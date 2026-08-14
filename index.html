@@ -509,28 +509,67 @@ const NEWS_SEED = [
 
 /* =========================================================================
    STORAGE
+   ---------------------------------------------------------------------
+   Load order for each collection, first one that works wins:
+     1. data/<name>.json — the "published" file in the repo. This is what
+        every visitor sees, since it's fetched fresh over HTTP on GitHub
+        Pages (this step is skipped/fails silently on file:// — browsers
+        block fetch() of local files — in which case we fall through).
+     2. localStorage — your own browser's draft copy (admin edits before
+        you've published them, or a cache from your last visit).
+     3. The SEED constants above, baked into this file as a last resort.
+   Editing in the admin page updates localStorage immediately (so you can
+   preview changes in this browser) but does NOT change what other people
+   see — for that you need to publish the JSON file to the repo. See the
+   admin page for a one-click download of the updated file to commit.
    ========================================================================= */
 const KEYS = { artists:"hackoustic-artists-v3", events:"hackoustic-events-v3", news:"hackoustic-news-v3" };
+const DATA_PATHS = { artists:"data/artists.json", events:"data/events.json", news:"data/news.json" };
 let artists = [], events = [], news = [];
+let publishedFetchOk = { artists:false, events:false, news:false };
 
-function loadAll(){
-  artists = loadOrSeed(KEYS.artists, ARTISTS_SEED);
-  events  = loadOrSeed(KEYS.events, EVENTS_SEED);
-  news    = loadOrSeed(KEYS.news, NEWS_SEED);
+async function loadAll(){
+  artists = await loadCollection("artists", KEYS.artists, ARTISTS_SEED);
+  events  = await loadCollection("events", KEYS.events, EVENTS_SEED);
+  news    = await loadCollection("news", KEYS.news, NEWS_SEED);
 }
-function loadOrSeed(key, seed){
+
+async function loadCollection(name, key, seed){
+  // 1. Try the published JSON file (real hosting only — fails fast on file://)
+  try{
+    const res = await fetch(DATA_PATHS[name], {cache:"no-store"});
+    if(res.ok){
+      const data = await res.json();
+      publishedFetchOk[name] = true;
+      try{ localStorage.setItem(key, JSON.stringify(data)); }catch(e){}
+      return data;
+    }
+  }catch(e){ /* fetch blocked (file://) or file missing — fall through */ }
+
+  // 2. Fall back to this browser's local draft/cache
   try{
     const raw = localStorage.getItem(key);
     if(raw) return JSON.parse(raw);
   }catch(e){}
+
+  // 3. Last resort — the seed baked into this file
   const withIds = seed.map((x,i)=>({...x, id:key+"-"+i}));
   try{ localStorage.setItem(key, JSON.stringify(withIds)); }catch(e){}
   return withIds;
 }
+
 function save(key, arr){ try{ localStorage.setItem(key, JSON.stringify(arr)); }catch(e){ alert("Could not save — your browser storage may be full. Try removing a large image or exporting a backup."); } }
 function saveArtists(){ save(KEYS.artists, artists); }
 function saveEvents(){ save(KEYS.events, events); }
 function saveNews(){ save(KEYS.news, news); }
+
+function downloadJson(filename, data){
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename; a.click();
+  URL.revokeObjectURL(url);
+}
 
 /* =========================================================================
    ROUTER
@@ -821,7 +860,7 @@ function showAdminGate(){
     <div class="admin-gate">
       <p class="eyebrow">Backend</p>
       <h2 style="font-size:22px;">Enter passphrase</h2>
-      <p>This page isn't linked anywhere on the site and only reachable by direct URL — but it isn't real security. Anyone who finds this link or reads the page source can get in. Don't put anything here you wouldn't want public.</p>
+      <p>This page isn't linked anywhere on the site and only reachable by direct URL — but on a public GitHub Pages repo, that's not real security: anyone who browses your repo on GitHub.com can read this passphrase straight out of the source, no guessing required. Treat it as a "please don't" sign, not a lock, and never put anything here you wouldn't want public.</p>
       <input type="password" id="admin-pass-input" placeholder="Passphrase" autofocus>
       <button class="primary" id="admin-pass-submit">Unlock</button>
       <p id="admin-pass-error" style="color:var(--danger); font-family:var(--mono); font-size:12px; display:none;">Wrong passphrase.</p>
@@ -846,7 +885,7 @@ function renderAdmin(){
     <div class="hero" style="padding-top:40px; padding-bottom:0; border-bottom:none;">
       <p class="eyebrow">Backend</p>
       <h1 style="font-size:28px;">Manage the site</h1>
-      <div class="admin-warning">This page is reachable by anyone with the URL — it's hidden, not password-protected in any real sense. Treat the passphrase as a light deterrent, not a lock.</div>
+      <div class="admin-warning">This page is reachable by anyone with the URL, and on a public repo the passphrase is visible in your source on GitHub too — it's hidden, not protected. Treat it as a light deterrent, not a lock.<br><br><b>Publishing:</b> edits here save to this browser only. To make them live for everyone, use the "Download updated …json" button below each list, then replace the matching file in <code>/data/</code> in your GitHub repo and commit — Pages redeploys automatically, usually within a minute.</div>
     </div>
     <div class="admin-tabs">
       <button class="admin-tab-btn active" data-admin-tab="artists">Artists</button>
@@ -918,15 +957,20 @@ function renderAdminArtists(){
           <input type="file" id="aa-image-file" accept="image/*">
           <img class="image-preview" id="aa-image-preview" style="display:none;">
         </div>
+        <span class="hint">Uploaded files are resized and embedded directly in artists.json as base64 — simplest option, but bulky for lots of large photos. For a lighter file, you can instead upload the image to an <code>/images/</code> folder in your GitHub repo and paste its relative path (e.g. <code>images/tim-yates.jpg</code>) into the URL field.</span>
       </div>
       <div class="actions">
         <button type="submit" class="primary">Add artist</button>
         <span class="form-msg" id="aa-msg"></span>
       </div>
     </form>
-    <h2 style="font-size:20px;">Existing artists (${artists.length})</h2>
+    <div class="actions" style="margin:24px 0 12px;">
+      <h2 style="font-size:20px; margin:0;">Existing artists (${artists.length})</h2>
+      <button class="ghost" id="publish-artists-btn">Download updated artists.json</button>
+    </div>
     <div class="admin-list" id="admin-artist-list"></div>
   `;
+  document.getElementById("publish-artists-btn").addEventListener("click", ()=> downloadJson("artists.json", artists));
 
   let pendingImage = "";
   const preview = document.getElementById("aa-image-preview");
@@ -1066,9 +1110,13 @@ function renderAdminEvents(){
       <div class="field full"><label for="ea-desc">Description</label><textarea id="ea-desc"></textarea></div>
       <div class="actions"><button type="submit" class="primary">Add event</button><span class="form-msg" id="ea-msg"></span></div>
     </form>
-    <h2 style="font-size:20px;">Existing events (${events.length})</h2>
+    <div class="actions" style="margin:24px 0 12px;">
+      <h2 style="font-size:20px; margin:0;">Existing events (${events.length})</h2>
+      <button class="ghost" id="publish-events-btn">Download updated events.json</button>
+    </div>
     <div class="admin-list" id="admin-event-list"></div>
   `;
+  document.getElementById("publish-events-btn").addEventListener("click", ()=> downloadJson("events.json", events));
   document.getElementById("event-admin-form").addEventListener("submit", (e)=>{
     e.preventDefault();
     const title = document.getElementById("ea-title").value.trim();
@@ -1116,9 +1164,13 @@ function renderAdminNews(){
       <div class="field full"><label for="na-link">Link (optional)</label><input type="url" id="na-link" placeholder="https://…"></div>
       <div class="actions"><button type="submit" class="primary">Add post</button><span class="form-msg" id="na-msg"></span></div>
     </form>
-    <h2 style="font-size:20px;">Existing posts (${news.length})</h2>
+    <div class="actions" style="margin:24px 0 12px;">
+      <h2 style="font-size:20px; margin:0;">Existing posts (${news.length})</h2>
+      <button class="ghost" id="publish-news-btn">Download updated news.json</button>
+    </div>
     <div class="admin-list" id="admin-news-list"></div>
   `;
+  document.getElementById("publish-news-btn").addEventListener("click", ()=> downloadJson("news.json", news));
   document.getElementById("news-admin-form").addEventListener("submit", (e)=>{
     e.preventDefault();
     const title = document.getElementById("na-title").value.trim();
@@ -1153,13 +1205,15 @@ function renderAdminNews(){
 /* =========================================================================
    INIT
    ========================================================================= */
-loadAll();
-renderHome();
-renderArtistTagbar();
-renderArtistGrid();
-renderEvents();
-renderNews();
-route();
+(async function init(){
+  await loadAll();
+  renderHome();
+  renderArtistTagbar();
+  renderArtistGrid();
+  renderEvents();
+  renderNews();
+  route();
+})();
 </script>
 </body>
 </html>
