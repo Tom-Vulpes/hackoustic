@@ -71,7 +71,21 @@
   }
   input[type="search"]{flex:1 1 220px;}
   input::placeholder, textarea::placeholder{color:var(--muted2);}
-  .tagbar{display:flex; gap:8px; flex-wrap:wrap;}
+  .tagbar{display:flex; gap:8px; flex-wrap:wrap; padding-top:12px;}
+  .tag-details{position:relative;}
+  .tag-details summary{
+    font-family:var(--mono); font-size:13px; color:var(--grey); cursor:pointer;
+    padding:10px 14px; border:1px solid var(--line); border-radius:6px; background:var(--card);
+    list-style:none; user-select:none; display:inline-flex; align-items:center; gap:6px;
+  }
+  .tag-details summary::-webkit-details-marker{display:none;}
+  .tag-details summary::after{content:"▾"; font-size:10px; transition:transform .15s;}
+  .tag-details[open] summary::after{transform:rotate(180deg);}
+  .tag-details summary:hover{border-color:var(--accent); color:var(--ink);}
+  .tag-details[open] summary{border-color:var(--accent); color:var(--ink);}
+  .active-tag-line{font-family:var(--mono); font-size:12.5px; color:var(--grey); display:flex; align-items:center; gap:8px;}
+  .active-tag-line .chip{background:var(--accent); color:#fff; border-color:var(--accent);}
+  .active-tag-line button{background:none; border:none; color:var(--accent); cursor:pointer; font-family:var(--mono); font-size:12.5px; text-decoration:underline; padding:0;}
   .tag-pill{font-family:var(--mono); font-size:12px; padding:6px 12px; border-radius:20px; background:var(--card); border:1px solid var(--line); color:var(--grey); cursor:pointer; transition:all .15s; white-space:nowrap;}
   .tag-pill:hover{border-color:var(--accent); color:var(--ink);}
   .tag-pill.active{background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600;}
@@ -248,9 +262,15 @@
       <p class="sub">We're very lucky to have worked with a huge number of extremely talented artists, designers, scientists and musicians over the years. Short profiles and links for everyone we've worked with, below.</p>
       <div class="note"><b>A note on completeness:</b> compiled from Hackoustic's own artist archive plus public event listings — not a full scrape of every event or our Eventbrite history. Missing someone? It's added from the backend.</div>
     </div>
-    <div class="controls">
-      <input type="search" id="artist-search" placeholder="Search by name or description…" aria-label="Search artists">
-      <div class="tagbar" id="artist-tagbar"></div>
+    <div class="controls" style="flex-direction:column; align-items:stretch;">
+      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+        <input type="search" id="artist-search" placeholder="Search by name or description…" aria-label="Search artists">
+        <details class="tag-details" id="tag-details">
+          <summary>Filter by tag</summary>
+          <div class="tagbar" id="artist-tagbar"></div>
+        </details>
+      </div>
+      <div id="active-tag-line" class="active-tag-line" style="display:none;"></div>
     </div>
     <section class="directory"><div class="grid" id="artist-grid"></div></section>
   </section>
@@ -629,11 +649,32 @@ function renderArtistTagbar(){
     const b = document.createElement("button");
     b.className = "tag-pill" + (activeArtistTag===val ? " active":"");
     b.textContent = label; b.type="button";
-    b.addEventListener("click", ()=>{ activeArtistTag = val; renderArtistGrid(); renderArtistTagbar(); });
+    b.addEventListener("click", ()=>{
+      activeArtistTag = val;
+      renderArtistGrid(); renderArtistTagbar();
+      const details = document.getElementById("tag-details");
+      if(details) details.open = false;
+    });
     return b;
   };
   bar.appendChild(mk("All","all"));
   artistTags().forEach(t=>bar.appendChild(mk(t,t)));
+
+  const line = document.getElementById("active-tag-line");
+  if(activeArtistTag === "all"){
+    line.style.display = "none";
+  }else{
+    line.style.display = "flex";
+    line.innerHTML = "";
+    const label = document.createElement("span");
+    label.textContent = "Filtering by:";
+    const chip = document.createElement("span");
+    chip.className = "chip"; chip.textContent = activeArtistTag;
+    const clear = document.createElement("button");
+    clear.textContent = "clear";
+    clear.addEventListener("click", ()=>{ activeArtistTag = "all"; renderArtistGrid(); renderArtistTagbar(); });
+    line.appendChild(label); line.appendChild(chip); line.appendChild(clear);
+  }
 }
 function socketNo(i){ return "№ " + String(i+1).padStart(3,"0"); }
 
@@ -933,6 +974,42 @@ function fileToCompressedDataUrl(file, maxDim=640, quality=0.82){
 }
 
 /* ---- Admin: Artists ---- */
+/* ---- shared: raw JSON editor block ---- */
+function jsonEditorHtml(id){
+  return `
+    <details class="tag-details json-editor" id="${id}-details">
+      <summary>Edit raw JSON</summary>
+      <div style="padding-top:14px;">
+        <p class="hint" style="display:block; margin-bottom:8px;">Paste or edit the full array below, then Apply to update the live preview in this browser, or Download to get a file ready to commit to <code>/data/</code>.</p>
+        <textarea id="${id}-textarea" style="width:100%; min-height:280px; font-family:var(--mono); font-size:12.5px;"></textarea>
+        <div class="actions" style="margin-top:10px;">
+          <button type="button" class="primary" id="${id}-apply">Apply changes</button>
+          <span class="form-msg" id="${id}-msg"></span>
+        </div>
+      </div>
+    </details>`;
+}
+function wireJsonEditor(id, getArr, applyFn){
+  const ta = document.getElementById(id+"-textarea");
+  const details = document.getElementById(id+"-details");
+  details.addEventListener("toggle", ()=>{
+    if(details.open) ta.value = JSON.stringify(getArr(), null, 2);
+  });
+  document.getElementById(id+"-apply").addEventListener("click", ()=>{
+    const msg = document.getElementById(id+"-msg");
+    try{
+      const parsed = JSON.parse(ta.value);
+      if(!Array.isArray(parsed)) throw new Error("Top level value must be an array");
+      applyFn(parsed);
+      msg.style.color = "var(--accent)";
+      msg.textContent = "Applied — " + parsed.length + " items. Remember to download and commit to publish.";
+    }catch(err){
+      msg.style.color = "var(--danger)";
+      msg.textContent = "Invalid JSON: " + err.message;
+    }
+  });
+}
+
 function renderAdminArtists(){
   const el = document.getElementById("admin-panel-artists");
   el.innerHTML = `
@@ -968,9 +1045,15 @@ function renderAdminArtists(){
       <h2 style="font-size:20px; margin:0;">Existing artists (${artists.length})</h2>
       <button class="ghost" id="publish-artists-btn">Download updated artists.json</button>
     </div>
-    <div class="admin-list" id="admin-artist-list"></div>
+    ${jsonEditorHtml("artists-json")}
+    <div class="admin-list" id="admin-artist-list" style="margin-top:16px;"></div>
   `;
   document.getElementById("publish-artists-btn").addEventListener("click", ()=> downloadJson("artists.json", artists));
+  wireJsonEditor("artists-json", ()=>artists, (parsed)=>{
+    artists = parsed.map((a,i)=>({ id: a.id || ("a-"+Date.now()+"-"+i), ...a }));
+    saveArtists();
+    renderAdminArtists(); renderArtistGrid(); renderArtistTagbar(); renderHome();
+  });
 
   let pendingImage = "";
   const preview = document.getElementById("aa-image-preview");
@@ -1114,9 +1197,15 @@ function renderAdminEvents(){
       <h2 style="font-size:20px; margin:0;">Existing events (${events.length})</h2>
       <button class="ghost" id="publish-events-btn">Download updated events.json</button>
     </div>
-    <div class="admin-list" id="admin-event-list"></div>
+    ${jsonEditorHtml("events-json")}
+    <div class="admin-list" id="admin-event-list" style="margin-top:16px;"></div>
   `;
   document.getElementById("publish-events-btn").addEventListener("click", ()=> downloadJson("events.json", events));
+  wireJsonEditor("events-json", ()=>events, (parsed)=>{
+    events = parsed.map((ev,i)=>({ id: ev.id || ("e-"+Date.now()+"-"+i), ...ev }));
+    saveEvents();
+    renderAdminEvents(); renderEvents(); renderHome();
+  });
   document.getElementById("event-admin-form").addEventListener("submit", (e)=>{
     e.preventDefault();
     const title = document.getElementById("ea-title").value.trim();
@@ -1168,9 +1257,15 @@ function renderAdminNews(){
       <h2 style="font-size:20px; margin:0;">Existing posts (${news.length})</h2>
       <button class="ghost" id="publish-news-btn">Download updated news.json</button>
     </div>
-    <div class="admin-list" id="admin-news-list"></div>
+    ${jsonEditorHtml("news-json")}
+    <div class="admin-list" id="admin-news-list" style="margin-top:16px;"></div>
   `;
   document.getElementById("publish-news-btn").addEventListener("click", ()=> downloadJson("news.json", news));
+  wireJsonEditor("news-json", ()=>news, (parsed)=>{
+    news = parsed.map((n,i)=>({ id: n.id || ("n-"+Date.now()+"-"+i), ...n }));
+    saveNews();
+    renderAdminNews(); renderNews();
+  });
   document.getElementById("news-admin-form").addEventListener("submit", (e)=>{
     e.preventDefault();
     const title = document.getElementById("na-title").value.trim();
