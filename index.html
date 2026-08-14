@@ -3,180 +3,180 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hackoustic — Artist Directory</title>
+<title>Hackoustic — Sound, Hacked Open</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#FAFAF7;
-    --bg-alt:#F1EFE9;
-    --card:#FFFFFF;
-    --ink:#242220;
-    --grey:#726D64;
-    --line:#E4E0D6;
-    --accent:#B15A2B;
-    --accent-soft:#F1DFC9;
-    --sans:'Work Sans', sans-serif;
-    --head:'Archivo', sans-serif;
-    --mono:'IBM Plex Mono', monospace;
+    --bg:#FAFAF7; --bg-alt:#F1EFE9; --card:#FFFFFF; --ink:#242220; --grey:#726D64;
+    --line:#E4E0D6; --accent:#B15A2B; --accent-soft:#F1DFC9; --muted2:#A39D8F;
+    --danger:#B0392F;
+    --sans:'Work Sans', sans-serif; --head:'Archivo', sans-serif; --mono:'IBM Plex Mono', monospace;
   }
   *{box-sizing:border-box;}
-  body{
-    margin:0; background:var(--bg); color:var(--ink);
-    font-family:var(--sans); line-height:1.55; -webkit-font-smoothing:antialiased;
-  }
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); line-height:1.55; -webkit-font-smoothing:antialiased;}
   a{color:var(--accent);}
   ::selection{background:var(--accent-soft);}
   :focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
   .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+  img{max-width:100%; display:block;}
+  button{font-family:inherit;}
 
-  /* ---- header, echoing hackoustic.org's plain top bar + nav ---- */
-  header.site{border-bottom:1px solid var(--line); background:var(--card);}
-  .nav{display:flex; align-items:center; justify-content:space-between; padding:20px 28px; max-width:1080px; margin:0 auto;}
-  .wordmark{font-family:var(--head); font-weight:700; font-size:20px; letter-spacing:-0.01em; text-decoration:none; color:var(--ink);}
-  .nav-links{display:flex; gap:28px; font-family:var(--sans); font-size:14px; color:var(--grey);}
-  .nav-links a{color:var(--grey); text-decoration:none;}
-  .nav-links a:hover{color:var(--accent);}
-  .socials{display:flex; gap:14px; font-size:12.5px; font-family:var(--mono); color:var(--grey);}
-  .socials a{color:var(--grey); text-decoration:none;}
-  .socials a:hover{color:var(--accent);}
+  /* header */
+  header.site{border-bottom:1px solid var(--line); background:var(--card); position:sticky; top:0; z-index:50;}
   .header-top{display:flex; justify-content:flex-end; gap:14px; padding:8px 28px; max-width:1080px; margin:0 auto; font-family:var(--mono); font-size:11.5px; color:var(--grey);}
   .header-top a{color:var(--grey); text-decoration:none;}
   .header-top a:hover{color:var(--accent);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:1080px; margin:0 auto; flex-wrap:wrap; gap:12px;}
+  .wordmark{font-family:var(--head); font-weight:700; font-size:20px; letter-spacing:-0.01em; text-decoration:none; color:var(--ink);}
+  .tabs{display:flex; gap:6px; flex-wrap:wrap;}
+  .tab-btn{
+    font-family:var(--sans); font-size:14px; color:var(--grey); background:none; border:none;
+    padding:8px 14px; border-radius:6px; cursor:pointer; text-decoration:none;
+  }
+  .tab-btn:hover{color:var(--ink); background:var(--bg-alt);}
+  .tab-btn.active{color:#fff; background:var(--accent); font-weight:600;}
 
-  /* ---- hero ---- */
+  main{min-height:60vh;}
+  section.tab-panel{display:none;}
+  section.tab-panel.active{display:block;}
+
+  /* hero / home */
   .hero{padding:56px 0 40px; border-bottom:1px solid var(--line);}
   .eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin:0 0 14px;}
-  h1{font-family:var(--head); font-weight:700; font-size:clamp(30px,4.4vw,44px); line-height:1.08; margin:0 0 16px; max-width:680px;}
-  .sub{max-width:600px; color:var(--grey); font-size:16px; margin:0 0 28px;}
-  .note{
-    background:var(--bg-alt); border:1px solid var(--line); border-radius:8px;
-    padding:14px 18px; font-size:13.5px; color:var(--grey); max-width:600px;
-  }
+  h1{font-family:var(--head); font-weight:700; font-size:clamp(30px,4.4vw,46px); line-height:1.08; margin:0 0 16px; max-width:700px;}
+  h2{font-family:var(--head); font-weight:700; font-size:clamp(24px,3vw,30px); margin:0 0 8px;}
+  .sub{max-width:620px; color:var(--grey); font-size:16px; margin:0 0 28px;}
+  .note{background:var(--bg-alt); border:1px solid var(--line); border-radius:8px; padding:14px 18px; font-size:13.5px; color:var(--grey); max-width:620px;}
   .note b{color:var(--ink);}
   .stats{display:flex; gap:40px; margin-top:28px; flex-wrap:wrap;}
   .stat b{display:block; font-family:var(--head); font-size:26px; font-weight:700;}
   .stat span{font-family:var(--mono); font-size:11px; color:var(--grey); text-transform:uppercase; letter-spacing:.06em;}
 
-  /* ---- controls ---- */
-  .controls{
-    display:flex; gap:12px; flex-wrap:wrap; align-items:center;
-    padding:20px 0; position:sticky; top:0; background:var(--bg); z-index:30; border-bottom:1px solid var(--line);
+  .home-section{padding:44px 0; border-bottom:1px solid var(--line);}
+  .home-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:20px;}
+  .home-card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:20px;}
+  .home-card h3{font-family:var(--head); font-size:17px; margin:0 0 6px;}
+  .home-card p{font-size:13.5px; color:var(--grey); margin:0 0 12px;}
+  .home-card a.cta-link{font-family:var(--mono); font-size:12.5px; text-decoration:none;}
+  .venue-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;}
+  .venue-chip{font-family:var(--mono); font-size:11.5px; padding:6px 12px; border-radius:20px; background:var(--bg-alt); border:1px solid var(--line); color:var(--grey);}
+
+  /* controls (search/filter) shared */
+  .controls{display:flex; gap:12px; flex-wrap:wrap; align-items:center; padding:20px 0; position:sticky; top:57px; background:var(--bg); z-index:30; border-bottom:1px solid var(--line);}
+  input[type="search"], input[type="text"], input[type="url"], input[type="date"], input[type="password"], textarea, select{
+    background:var(--card); border:1px solid var(--line); color:var(--ink);
+    padding:10px 13px; border-radius:6px; font-family:var(--sans); font-size:14.5px; resize:vertical;
   }
-  input[type="search"]{
-    flex:1 1 220px; background:var(--card); border:1px solid var(--line); color:var(--ink);
-    padding:10px 14px; border-radius:6px; font-family:var(--sans); font-size:14.5px;
-  }
-  input[type="search"]::placeholder{color:#A39D8F;}
+  input[type="search"]{flex:1 1 220px;}
+  input::placeholder, textarea::placeholder{color:var(--muted2);}
   .tagbar{display:flex; gap:8px; flex-wrap:wrap;}
-  .tag-pill{
-    font-family:var(--mono); font-size:12px; padding:6px 12px; border-radius:20px;
-    background:var(--card); border:1px solid var(--line); color:var(--grey);
-    cursor:pointer; transition:all .15s; white-space:nowrap;
-  }
+  .tag-pill{font-family:var(--mono); font-size:12px; padding:6px 12px; border-radius:20px; background:var(--card); border:1px solid var(--line); color:var(--grey); cursor:pointer; transition:all .15s; white-space:nowrap;}
   .tag-pill:hover{border-color:var(--accent); color:var(--ink);}
   .tag-pill.active{background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600;}
 
-  /* ---- grid ---- */
+  /* artist grid */
   section.directory{padding:34px 0 60px;}
   .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:16px;}
-  .card{
-    position:relative; background:var(--card); border:1px solid var(--line); border-radius:10px;
-    padding:20px 20px 18px; display:flex; flex-direction:column; gap:10px; cursor:pointer;
-    transition:border-color .15s, transform .15s;
-    text-align:left;
-  }
+  .card{position:relative; background:var(--card); border:1px solid var(--line); border-radius:10px; overflow:hidden; display:flex; flex-direction:column; cursor:pointer; transition:border-color .15s, transform .15s; text-align:left;}
   .card:hover{border-color:var(--accent); transform:translateY(-2px);}
-  .card .top-row{display:flex; justify-content:space-between; align-items:flex-start; gap:8px;}
-  .card .socket{font-family:var(--mono); font-size:10.5px; color:#A39D8F; letter-spacing:.06em;}
-  .card .del{
-    background:none; border:none; color:#A39D8F; cursor:pointer; font-size:16px; line-height:1;
-    padding:2px 6px; border-radius:4px; opacity:0; transition:opacity .15s, color .15s;
-  }
-  .card:hover .del{opacity:1;}
-  .card .del:hover{color:#B0392F;}
-  .card h3{font-family:var(--head); font-weight:700; font-size:18px; margin:0; letter-spacing:-0.01em;}
-  .card .bio{color:var(--grey); font-size:13.5px; flex:1; overflow:hidden; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;}
-  .card .tags{display:flex; flex-wrap:wrap; gap:6px;}
-  .chip{
-    font-family:var(--mono); font-size:10.5px; padding:3px 9px; border-radius:12px;
-    background:var(--bg-alt); color:var(--accent); border:1px solid var(--line);
-    text-transform:uppercase; letter-spacing:.05em;
-  }
+  .card .thumb{width:100%; aspect-ratio:4/3; object-fit:cover; background:var(--bg-alt);}
+  .card .thumb-fallback{width:100%; aspect-ratio:4/3; background:var(--bg-alt); display:flex; align-items:center; justify-content:center; font-family:var(--head); font-size:32px; font-weight:700; color:var(--muted2);}
+  .card .body{padding:16px 18px 16px;}
+  .card .top-row{display:flex; justify-content:space-between; align-items:flex-start; gap:8px; margin-bottom:6px;}
+  .card .socket{font-family:var(--mono); font-size:10.5px; color:var(--muted2); letter-spacing:.06em;}
+  .card h3{font-family:var(--head); font-weight:700; font-size:17px; margin:0 0 8px; letter-spacing:-0.01em;}
+  .card .bio{color:var(--grey); font-size:13.5px; overflow:hidden; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; margin:0 0 10px;}
+  .card .tags{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px;}
+  .chip{font-family:var(--mono); font-size:10.5px; padding:3px 9px; border-radius:12px; background:var(--bg-alt); color:var(--accent); border:1px solid var(--line); text-transform:uppercase; letter-spacing:.05em;}
   .card .cta{font-family:var(--mono); font-size:11.5px; color:var(--accent);}
-  .empty{
-    grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--grey);
-    font-family:var(--mono); font-size:13.5px; border:1px dashed var(--line); border-radius:8px;
-  }
+  .empty{grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--grey); font-family:var(--mono); font-size:13.5px; border:1px dashed var(--line); border-radius:8px;}
 
-  /* ---- modal ---- */
-  .modal-backdrop{
-    position:fixed; inset:0; background:rgba(36,34,32,0.55); display:none;
-    align-items:flex-start; justify-content:center; padding:6vh 20px; z-index:100; overflow-y:auto;
-  }
+  /* events + news lists */
+  .timeline{display:flex; flex-direction:column; gap:0; margin-top:10px;}
+  .tl-item{display:grid; grid-template-columns:120px 1fr; gap:20px; padding:20px 0; border-bottom:1px solid var(--line);}
+  .tl-date{font-family:var(--mono); font-size:12.5px; color:var(--accent); padding-top:2px;}
+  .tl-title{font-family:var(--head); font-weight:700; font-size:17px; margin:0 0 4px;}
+  .tl-venue{font-family:var(--mono); font-size:11.5px; color:var(--muted2); margin-bottom:6px;}
+  .tl-desc{font-size:14px; color:var(--grey); margin:0;}
+  .tl-link{font-family:var(--mono); font-size:12px; margin-top:6px; display:inline-block;}
+  @media(max-width:600px){ .tl-item{grid-template-columns:1fr;} }
+
+  .news-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px;}
+  .news-card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:22px;}
+  .news-card .tl-date{margin-bottom:8px;}
+  .news-card h3{font-family:var(--head); font-size:18px; margin:0 0 8px;}
+  .news-card p{font-size:14px; color:var(--grey); margin:0 0 10px;}
+  @media(max-width:640px){ .news-grid{grid-template-columns:1fr;} }
+
+  /* modal (artist detail) */
+  .modal-backdrop{position:fixed; inset:0; background:rgba(36,34,32,0.55); display:none; align-items:flex-start; justify-content:center; padding:6vh 20px; z-index:100; overflow-y:auto;}
   .modal-backdrop.open{display:flex;}
-  .modal{
-    background:var(--card); border-radius:12px; max-width:560px; width:100%;
-    padding:34px 34px 30px; position:relative; box-shadow:0 20px 60px rgba(0,0,0,0.25);
-  }
-  .modal-close{
-    position:absolute; top:18px; right:18px; background:var(--bg-alt); border:1px solid var(--line);
-    width:32px; height:32px; border-radius:50%; font-size:16px; cursor:pointer; color:var(--grey);
-  }
+  .modal{background:var(--card); border-radius:12px; max-width:580px; width:100%; padding:0 0 30px; position:relative; box-shadow:0 20px 60px rgba(0,0,0,0.25); overflow:hidden;}
+  .modal-img{width:100%; aspect-ratio:16/9; object-fit:cover; background:var(--bg-alt);}
+  .modal-inner{padding:28px 34px 0;}
+  .modal-close{position:absolute; top:14px; right:14px; background:rgba(255,255,255,0.9); border:1px solid var(--line); width:32px; height:32px; border-radius:50%; font-size:16px; cursor:pointer; color:var(--grey); z-index:2;}
   .modal-close:hover{color:var(--accent); border-color:var(--accent);}
-  .modal .socket{font-family:var(--mono); font-size:11px; color:#A39D8F; letter-spacing:.06em;}
-  .modal h2{font-family:var(--head); font-size:28px; margin:6px 0 4px;}
+  .modal .socket{font-family:var(--mono); font-size:11px; color:var(--muted2); letter-spacing:.06em;}
+  .modal h2{font-family:var(--head); font-size:26px; margin:6px 0 4px;}
   .modal .event-line{font-family:var(--mono); font-size:12.5px; color:var(--accent); margin-bottom:14px;}
   .modal .tags{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px;}
   .modal .bio-full{font-size:15px; color:#3C3934; margin-bottom:20px; white-space:pre-line;}
   .modal .links{display:flex; flex-direction:column; gap:8px;}
-  .modal .links a{
-    display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:13px;
-    color:var(--ink); text-decoration:none; padding:9px 12px; background:var(--bg-alt);
-    border:1px solid var(--line); border-radius:6px;
-  }
+  .modal .links a{display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:13px; color:var(--ink); text-decoration:none; padding:9px 12px; background:var(--bg-alt); border:1px solid var(--line); border-radius:6px;}
   .modal .links a:hover{border-color:var(--accent); color:var(--accent);}
-  .modal .no-link{font-family:var(--mono); font-size:12.5px; color:#A39D8F;}
+  .modal .no-link{font-family:var(--mono); font-size:12.5px; color:var(--muted2);}
 
-  /* ---- add form ---- */
-  section.add{padding:50px 0 70px; border-top:1px solid var(--line);}
-  h2.section-title{font-family:var(--head); font-weight:700; font-size:26px; margin:0 0 8px;}
-  .section-sub{color:var(--grey); font-size:14.5px; margin:0 0 26px; max-width:520px;}
-  form#add-form{
-    display:grid; grid-template-columns:1fr 1fr; gap:16px; background:var(--card);
-    border:1px solid var(--line); border-radius:10px; padding:26px;
-  }
-  .field{display:flex; flex-direction:column; gap:6px;}
-  .field.full{grid-column:1/-1;}
-  label{font-family:var(--mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--grey);}
-  input[type="text"], input[type="url"], textarea{
-    background:var(--bg-alt); border:1px solid var(--line); color:var(--ink);
-    padding:10px 13px; border-radius:6px; font-family:var(--sans); font-size:14.5px; resize:vertical;
-  }
-  textarea{min-height:90px;}
-  .hint{font-size:11.5px; color:#A39D8F; font-family:var(--mono);}
-  .actions{grid-column:1/-1; display:flex; gap:12px; align-items:center; margin-top:4px; flex-wrap:wrap;}
-  button.primary{
-    font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.03em;
-    background:var(--accent); color:#fff; border:none; padding:12px 22px; border-radius:6px; cursor:pointer;
-  }
-  button.primary:hover{background:#96491F;}
-  #form-msg{font-family:var(--mono); font-size:12.5px; color:var(--accent);}
+  /* about */
+  .about-body{max-width:680px; padding:44px 0 70px;}
+  .about-body p{font-size:15.5px; color:#3C3934;}
+  .founders{font-family:var(--mono); font-size:13px; color:var(--grey); margin-top:24px; padding-top:20px; border-top:1px solid var(--line);}
 
   footer{border-top:1px solid var(--line); padding:36px 0 56px;}
   .footer-row{display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;}
   .footer-about{max-width:480px; color:var(--grey); font-size:13px;}
   .footer-tools{display:flex; gap:10px; flex-wrap:wrap;}
-  button.ghost{
-    font-family:var(--mono); font-size:12px; background:transparent; color:var(--grey);
-    border:1px solid var(--line); padding:8px 14px; border-radius:6px; cursor:pointer;
-  }
+  button.ghost{font-family:var(--mono); font-size:12px; background:transparent; color:var(--grey); border:1px solid var(--line); padding:8px 14px; border-radius:6px; cursor:pointer;}
   button.ghost:hover{color:var(--accent); border-color:var(--accent);}
+  button.primary{font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.03em; background:var(--accent); color:#fff; border:none; padding:12px 22px; border-radius:6px; cursor:pointer;}
+  button.primary:hover{background:#96491F;}
+  button.small-danger{font-family:var(--mono); font-size:11.5px; background:none; border:1px solid var(--line); color:var(--danger); padding:5px 10px; border-radius:5px; cursor:pointer;}
+  button.small-danger:hover{border-color:var(--danger); background:#FBEAE7;}
+  button.small{font-family:var(--mono); font-size:11.5px; background:none; border:1px solid var(--line); color:var(--grey); padding:5px 10px; border-radius:5px; cursor:pointer;}
+  button.small:hover{border-color:var(--accent); color:var(--accent);}
+
+  /* admin */
+  .admin-gate{max-width:420px; margin:80px auto; text-align:center; padding:40px; background:var(--card); border:1px solid var(--line); border-radius:12px;}
+  .admin-gate p{color:var(--grey); font-size:13.5px;}
+  .admin-gate input{width:100%; margin:16px 0; text-align:center;}
+  .admin-warning{background:#FBEAE7; border:1px solid #E9C4BC; color:#7A3327; border-radius:8px; padding:12px 16px; font-size:12.5px; margin-bottom:24px; font-family:var(--mono);}
+  .admin-tabs{display:flex; gap:8px; margin:24px 0; border-bottom:1px solid var(--line); padding-bottom:0;}
+  .admin-tab-btn{font-family:var(--mono); font-size:12.5px; padding:10px 16px; background:none; border:none; border-bottom:2px solid transparent; color:var(--grey); cursor:pointer;}
+  .admin-tab-btn.active{color:var(--accent); border-bottom-color:var(--accent); font-weight:600;}
+  .admin-panel{display:none;}
+  .admin-panel.active{display:block;}
+  form.admin-form{display:grid; grid-template-columns:1fr 1fr; gap:14px; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:24px; margin-bottom:30px;}
+  .field{display:flex; flex-direction:column; gap:6px;}
+  .field.full{grid-column:1/-1;}
+  label{font-family:var(--mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--grey);}
+  textarea{min-height:80px;}
+  .hint{font-size:11.5px; color:var(--muted2); font-family:var(--mono);}
+  .actions{grid-column:1/-1; display:flex; gap:12px; align-items:center; margin-top:4px; flex-wrap:wrap;}
+  #form-msg, .form-msg{font-family:var(--mono); font-size:12.5px; color:var(--accent);}
+  .image-input-row{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+  .image-preview{width:90px; height:68px; object-fit:cover; border-radius:6px; border:1px solid var(--line); background:var(--bg-alt);}
+  .admin-list{display:flex; flex-direction:column; gap:10px;}
+  .admin-row{display:flex; justify-content:space-between; align-items:center; gap:14px; background:var(--card); border:1px solid var(--line); border-radius:8px; padding:12px 16px;}
+  .admin-row .info{font-size:13.5px;}
+  .admin-row .info b{font-family:var(--head);}
+  .admin-row .info span{display:block; font-family:var(--mono); font-size:11px; color:var(--muted2); margin-top:2px;}
+  .admin-row .row-actions{display:flex; gap:8px; flex-shrink:0;}
 
   @media (max-width:640px){
-    .nav-links, .header-top{display:none;}
-    form#add-form{grid-template-columns:1fr;}
+    .header-top{display:none;}
+    .home-grid{grid-template-columns:1fr;}
+    form.admin-form{grid-template-columns:1fr;}
     .controls{position:static;}
   }
 </style>
@@ -190,78 +190,120 @@
     <a href="mailto:info@hackoustic.org">Email</a>
   </div>
   <div class="nav">
-    <a class="wordmark" href="#top">HACKOUSTIC</a>
-    <nav class="nav-links">
-      <a href="#directory">Artists</a>
-      <a href="#add">Add an artist</a>
-      <a href="#about">About</a>
+    <a class="wordmark" href="#home">HACKOUSTIC</a>
+    <nav class="tabs">
+      <a class="tab-btn" data-tab="home" href="#home">Home</a>
+      <a class="tab-btn" data-tab="artists" href="#artists">Artists</a>
+      <a class="tab-btn" data-tab="events" href="#events">Events</a>
+      <a class="tab-btn" data-tab="news" href="#news">News</a>
+      <a class="tab-btn" data-tab="about" href="#about">About</a>
     </nav>
   </div>
 </header>
 
-<div class="wrap" id="top">
-  <section class="hero">
-    <p class="eyebrow">London Hackspace · Est. 2014</p>
-    <h1>Artist Profiles</h1>
-    <p class="sub">We're very lucky to have worked with a huge number of extremely talented artists, designers, scientists and musicians over the years. Short profiles and links for everyone we've worked with, below.</p>
-    <div class="note"><b>A note on completeness:</b> this list is built from Hackoustic's own public artist-profile archive plus event listings I could find — not a full scrape of every event or your Eventbrite history (that lives behind your organiser login, which I can't access). Add anyone missing using the form below.</div>
-    <div class="stats">
-      <div class="stat"><b id="stat-count">0</b><span>Artists listed</span></div>
-      <div class="stat"><b>2014</b><span>Founded at</span></div>
-      <div class="stat"><b>E2</b><span>London Hackspace</span></div>
+<main class="wrap">
+
+  <!-- HOME -->
+  <section class="tab-panel" id="panel-home">
+    <div class="hero">
+      <p class="eyebrow">London Hackspace · Est. 2014</p>
+      <h1>Instruments nobody sold us.</h1>
+      <p class="sub">Hackoustic is a hacking group dedicated to exploring acoustics and instrument building — a community of sonic hackers, instrument builders and sound artists based at the London Hackspace since 2014.</p>
+      <div class="stats">
+        <div class="stat"><b id="home-stat-artists">0</b><span>Artists</span></div>
+        <div class="stat"><b id="home-stat-events">0</b><span>Events archived</span></div>
+        <div class="stat"><b>2014</b><span>Founded</span></div>
+      </div>
+      <div class="venue-row" id="home-venues"></div>
+    </div>
+
+    <div class="home-section">
+      <h2>Explore</h2>
+      <p class="sub" style="margin-bottom:0;">Three ways into what we do.</p>
+      <div class="home-grid">
+        <div class="home-card">
+          <h3>Artist Directory</h3>
+          <p>Profiles, bios and links for the sound artists, hackers and instrument builders we've worked with.</p>
+          <a class="tab-btn cta-link" data-tab="artists" href="#artists" style="padding:0; color:var(--accent);">→ Browse artists</a>
+        </div>
+        <div class="home-card">
+          <h3>Events</h3>
+          <p>A running history of Hackoustic nights, festivals and appearances since 2014.</p>
+          <a class="tab-btn cta-link" data-tab="events" href="#events" style="padding:0; color:var(--accent);">→ See the timeline</a>
+        </div>
+        <div class="home-card">
+          <h3>News</h3>
+          <p>Milestones, awards and highlights from over a decade of hacked sound.</p>
+          <a class="tab-btn cta-link" data-tab="news" href="#news" style="padding:0; color:var(--accent);">→ Read the news</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="controls">
-    <input type="search" id="search" placeholder="Search by name or description…" aria-label="Search artists">
-    <div class="tagbar" id="tagbar"></div>
+  <!-- ARTISTS -->
+  <section class="tab-panel" id="panel-artists">
+    <div class="hero" style="padding-top:40px;">
+      <p class="eyebrow">Artist Profiles</p>
+      <h1 style="font-size:clamp(28px,4vw,38px);">Who we've worked with</h1>
+      <p class="sub">We're very lucky to have worked with a huge number of extremely talented artists, designers, scientists and musicians over the years. Short profiles and links for everyone we've worked with, below.</p>
+      <div class="note"><b>A note on completeness:</b> compiled from Hackoustic's own artist archive plus public event listings — not a full scrape of every event or our Eventbrite history. Missing someone? It's added from the backend.</div>
+    </div>
+    <div class="controls">
+      <input type="search" id="artist-search" placeholder="Search by name or description…" aria-label="Search artists">
+      <div class="tagbar" id="artist-tagbar"></div>
+    </div>
+    <section class="directory"><div class="grid" id="artist-grid"></div></section>
   </section>
 
-  <section class="directory" id="directory">
-    <div class="grid" id="grid"></div>
+  <!-- EVENTS -->
+  <section class="tab-panel" id="panel-events">
+    <div class="hero" style="padding-top:40px;">
+      <p class="eyebrow">Since 2014</p>
+      <h1 style="font-size:clamp(28px,4vw,38px);">Event history</h1>
+      <p class="sub">Hackoustic Presents nights, festivals, Tate Modern and V&A appearances, and everything in between — newest first.</p>
+      <div class="note"><b>A note on sources:</b> built from Hackoustic's own published event posts. Full Eventbrite order history lives behind your organiser login, which I can't access — add anything missing from the backend.</div>
+    </div>
+    <div class="controls">
+      <input type="search" id="event-search" placeholder="Search events by title or venue…" aria-label="Search events">
+    </div>
+    <section class="directory"><div class="timeline" id="event-list"></div></section>
   </section>
 
-  <section class="add" id="add">
-    <h2 class="section-title">Add an artist</h2>
-    <p class="section-sub">Know someone who should be here? Add them below — it saves straight to this page in your browser.</p>
-    <form id="add-form">
-      <div class="field">
-        <label for="f-name">Name *</label>
-        <input type="text" id="f-name" required placeholder="e.g. Jenn Kirby">
-      </div>
-      <div class="field">
-        <label for="f-tags">Tags</label>
-        <input type="text" id="f-tags" placeholder="composer, electronics">
-        <span class="hint">comma-separated</span>
-      </div>
-      <div class="field full">
-        <label for="f-bio">Bio *</label>
-        <textarea id="f-bio" required placeholder="A sentence or two on what they make and how they work."></textarea>
-      </div>
-      <div class="field">
-        <label for="f-link">Website / link</label>
-        <input type="url" id="f-link" placeholder="https://…">
-      </div>
-      <div class="field">
-        <label for="f-event">Where you worked with them</label>
-        <input type="text" id="f-event" placeholder="e.g. Hackoustic Presents, 2019">
-      </div>
-      <div class="actions">
-        <button type="submit" class="primary">Add to directory</button>
-        <span id="form-msg"></span>
-      </div>
-    </form>
+  <!-- NEWS -->
+  <section class="tab-panel" id="panel-news">
+    <div class="hero" style="padding-top:40px;">
+      <p class="eyebrow">Milestones</p>
+      <h1 style="font-size:clamp(28px,4vw,38px);">News</h1>
+      <p class="sub">Awards, press mentions and moments worth remembering from over a decade of Hackoustic.</p>
+    </div>
+    <section class="directory"><div class="news-grid" id="news-grid"></div></section>
   </section>
-</div>
 
-<footer id="about">
+  <!-- ABOUT -->
+  <section class="tab-panel" id="panel-about">
+    <div class="about-body">
+      <p class="eyebrow">About</p>
+      <h1 style="font-size:clamp(28px,4vw,38px);">About Hackoustic</h1>
+      <p>Hackoustic is a hacking group dedicated to exploring acoustics and instrument building. We were formed in 2014 at the London Hackspace as a place to experiment with acoustic sound, physical interfaces and instrument building — anything involving more than a laptop, modular synth and speakers.</p>
+      <p>We run a host of different types of events related to acoustic hacking, including festivals, workshops and talks. We also appear as part of larger events and venues such as the Tate Modern, the V&A and Abbey Road Studios, as well as at our spiritual home, Iklectik.</p>
+      <p>Our goal is to provide a platform for sonic-hackers of all kinds, from musical instrument builders to sound-artists, to present their work to the public — as well as providing workshops and educational opportunities for anyone interested in learning more, from newbie hobbyist to seasoned professional.</p>
+      <p>Our group welcomes anyone, from any background, with any level of experience. If you have an idea for a brand new instrument but don't know where to start, you may find the ideal person to point you in the right direction. Get in touch and let us know what you're up to.</p>
+      <p class="founders">Hackoustic was founded by Tim Yates and Saif Bunni, and is now run by Tim Yates and Tom &amp; Steph Fox.</p>
+    </div>
+  </section>
+
+  <!-- ADMIN (unlinked from nav) -->
+  <section class="tab-panel" id="panel-admin"></section>
+
+</main>
+
+<footer id="site-footer">
   <div class="wrap footer-row">
-    <p class="footer-about">Hackoustic is a hacking group dedicated to exploring acoustics and instrument building, based at the London Hackspace since 2014. This directory lives entirely in your browser's storage — nothing is sent anywhere. Export a backup before clearing your browser data, or to move it to another device.</p>
+    <p class="footer-about">This site's Artists, Events and News data lives in your browser's local storage — nothing is sent anywhere. Export a backup before clearing your browser data, or to move it to another device.</p>
     <div class="footer-tools">
       <button class="ghost" id="export-btn">Export .json</button>
       <button class="ghost" id="import-btn">Import .json</button>
       <input type="file" id="import-file" accept="application/json" style="display:none">
-      <button class="ghost" id="reset-btn">Reset to starter list</button>
     </div>
   </div>
 </footer>
@@ -274,394 +316,850 @@
 </div>
 
 <script>
-  // ---------- seed data ----------
-  // Primary source: hackoustic.org's own "Artist Profile" archive (23 profiles, with
-  // links exactly as published there). Secondary: named artists from Hackoustic event
-  // pages, the Hackompilation (Bandcamp), and public Eventbrite/Iklectik listings that
-  // don't have a full hackoustic.org profile — bios kept short since no full profile exists.
-  const SEED = [
-    {name:"Tim Yates", tags:["founder","instrument-builder","sound-artist"], event:"Founder & Director, ongoing",
-      bio:"Award-winning instrument builder, sound-artist and musician who makes, builds and finds instruments for performance and installation. Shown work at the Tate Modern, the V&A and Xi'an International Maker Faire. Runs the R&D programme at Drake Music and produces for Music Tech Fest.",
-      links:[{label:"Website", url:"http://timyates.net/"},{label:"Twitter", url:"https://twitter.com/TimYatesSounds"}]},
-    {name:"Vulpestruments (Tom Fox)", tags:["creative-director","instrument-builder","educator"], event:"Creative Director, ongoing",
-      bio:"Tom Fox's project exploring reclaimed materials and odd bits of physics and technology to find new methods of sound creation and interaction. Shown at the Tate Modern, the V&A, the Royal College of Music and Art; runs workshops at UCA, LCC and Brighton University.",
-      links:[{label:"Website", url:"https://vulpestruments.com/"},{label:"Twitter", url:"https://twitter.com/Vulpestruments"},{label:"Instagram", url:"https://www.instagram.com/vulpestruments/"}]},
-    {name:"Gawain Hewitt", tags:["composer","educator"], event:"Hackoustic Presents, 2018",
-      bio:"Artist and composer known for combining technology with more traditional musical and artistic practices. Shown at Spitalfields Festival, the V&A and Tate Modern; part of the team that won the European Space Agency prize at Music Tech Fest 2018 for a satellite-data sonification piece.",
-      links:[{label:"Website", url:"http://gawainhewitt.co.uk/"},{label:"Twitter", url:"https://twitter.com/GawainHewitt"},{label:"Instagram", url:"https://www.instagram.com/gawainhewitt/"}]},
-    {name:"Adrian Holder (Precis)", tags:["sound-artist","electronics"], event:"Artist Profile archive",
-      bio:"Sound and visual artist who processes real-world sounds using anything from a hacked radio to MAX for Live, working across genres to convey the balance between audio and visual perception.",
-      links:[]},
-    {name:"Jen Haugan", tags:["designer","sound-artist"], event:"Artist Profile archive",
-      bio:"Multidisciplinary designer with an MA in Information Experience Design from the RCA, creating tangible experiences with light and sound. Exhibited at Sónar+D and IRCAM. Runs design collective Studio Strohm.",
-      links:[{label:"Website", url:"http://jenhaugan.com/"},{label:"Studio Strohm", url:"http://www.studiostrohm.com/"}]},
-    {name:"Richard Grant (Son.im)", tags:["sound-artist","sculpture"], event:"Artist Profile archive",
-      bio:"Founder of Son.im, a studio bridging art and show-craft. Sculptural work combines acoustics with sight and smell to encourage audience participation. Has worked with NASA, Disney and Abbey Road Studios.",
-      links:[{label:"Website", url:"https://son.im/"}]},
-    {name:"Ashleigh Fisk", tags:["ceramics","sound-artist"], event:"Hackoustic Presents, Nov 2018",
-      bio:"Multimedia artist working in ceramics, performance and sound, using archaeological and contemporary ceramics to summon historical characters through timeless sounds and folkloric narrative.",
-      links:[]},
-    {name:"MyPandaShallFly (Suren Seneviratne)", tags:["musician","producer"], event:"Artist Profile archive",
-      bio:"London-based producer whose remix work first got Pitchfork's attention in 2010. Has remixed The Weeknd and Little Boots, and played BBC Hackney Weekender, Outlook and Glade.",
-      links:[{label:"Facebook", url:"https://www.facebook.com/mypandashallfly"},{label:"Twitter", url:"https://twitter.com/mypandashallfly"},{label:"Instagram", url:"https://www.instagram.com/mypandashallfly/"}]},
-    {name:"Andrew Hockey", tags:["composer","instrument-builder"], event:"Artist Profile archive",
-      bio:"Composer and music technologist specialising in interactive instruments that let music be experienced outside a linear form. Featured on BBC Click, Berlin Maker Faire and the Old Truman Brewery.",
-      links:[{label:"Website", url:"https://www.andrewhockey.com/"},{label:"Instagram", url:"https://www.instagram.com/andrewrhockey/"}]},
-    {name:"Adam Paroussos (Bamboo Mustard)", tags:["sound-designer","performer"], event:"Artist Profile archive",
-      bio:"Sound designer, composer and performer who builds instruments and sound costumes for improvised audience performance. Runs multi-disciplinary event series Crossspace.",
-      links:[{label:"Website", url:"https://adammk25.wixsite.com/adamparoussos/"},{label:"Instagram", url:"https://www.instagram.com/bamboo_mustard/"},{label:"YouTube", url:"https://www.youtube.com/channel/UCv9xaXYGZaypHWRJG5wNwIQ"}]},
-    {name:"Brendan O'Connor", tags:["music-technologist","researcher"], event:"Artist Profile archive",
-      bio:"Music technologist working on sound installations, compositions and audio applications. PhD student at Queen Mary University of London researching vocal behaviour with machine learning. Shown at Ars Electronica and We Are Robots.",
-      links:[{label:"Website", url:"http://www.brendanoconnormusic.com/"}]},
-    {name:"Mother Disorder", tags:["performer","electronics"], event:"Hackoustic Presents, June 2018",
-      bio:"Performance piece Crystalline uses body-mounted microphones and foreboding electronic music, blending performance art and dark improvised sound around mental illness and neurodiversity.",
-      links:[{label:"Website", url:"http://www.motherdisorder.co.uk/"},{label:"SoundCloud", url:"https://soundcloud.com/motherdisorder"},{label:"Facebook", url:"https://www.facebook.com/MotherDisorder/"}]},
-    {name:"Nick Murray", tags:["composer","producer"], event:"Hackoustic Village, 2017",
-      bio:"London-based writer, composer and producer.",
-      links:[{label:"Website", url:"http://www.nickmurray.horse/"}]},
-    {name:"Amy Cutler", tags:["sound-artist","curator","researcher"], event:"Artist Profile archive",
-      bio:"Artist, cultural geographer, curator, writer and film-maker working with geography and nonhuman others. Has run live events with the BBC, Somerset House, Sheffield Doc/Fest, the Wellcome Trust, the Horniman Museum and Tate Modern.",
-      links:[]},
-    {name:"Dom Aversano", tags:["percussionist","composer"], event:"Hackoustic Village, 2017",
-      bio:"Multi-instrumentalist percussionist and composer whose primary instrument is the handpan, strongly influenced by konnakol, the Indian rhythmic vocal language.",
-      links:[{label:"Website", url:"https://www.domaversano.com/"}]},
-    {name:"Antosh Wojcik", tags:["poet","performer"], event:"We Are Robots, 2017",
-      bio:"Poet, performer and Lecturer of Poetry and Creative Writing at the University of Winchester. One half of sound-art duo Post Everything.",
-      links:[]},
-    {name:"Jenn Kirby", tags:["composer","music-technologist"], event:"Hackoustic Village, 2017",
-      bio:"Composer, performer, lecturer and music technologist. Programme Leader for MA Music at the University of the West of Scotland; founder of the Swansea Laptop Orchestra and Vice-President of the Irish Sound, Science and Technology Association.",
-      links:[{label:"Website", url:"http://www.jennkirby.com/"}]},
-    {name:"Cutlasses (Scott Pitkethly)", tags:["sound-artist","musician"], event:"The Hackompilation, 2020",
-      bio:"Solo project integrating the process of making music with the process of building the tools to make it — field recordings manipulated by DIY electronics, live guitar drones and cinematic melody.",
-      links:[]},
-    {name:"Gordon Charlton (Beat Frequency)", tags:["musician","theremin"], event:"Artist Profile archive",
-      bio:"Records and performs experimental theremin and computer-based music as Beat Frequency. Opened for thereminist Lydia Kavina at the 2010 Ether Festival, Royal Festival Hall.",
-      links:[]},
-    {name:"Eastman Presser", tags:["sound-artist","performer"], event:"We Are Robots, 2017",
-      bio:"London-based musicker whose practice uses the interaction of sound and the body to playfully question how we listen and what counts as music — performed as Good Listener.",
-      links:[{label:"Blog", url:"https://goodlistenershow.wordpress.com/"}]},
-    {name:"Bo Keeney", tags:["musician","instrument-builder"], event:"Hackoustic Village at We Are Robots",
-      bio:"Musician performing with a self-built, gesture-controlled instrument. Founded London Interactive Music Meetup (2015–17); released 13+ EPs and albums before moving into real-time responsive music research.",
-      links:[{label:"SoundCloud", url:"https://soundcloud.com/bokeeney"}]},
-    {name:"Kevin Ka Wei Chan (Gwaith Sŵn)", tags:["sound-artist","collective"], event:"Hackoustic Presents, 2017",
-      bio:"London-based sound artist exploring memory, temporal location and political economy through redundant, discarded consumer audio technology. Collaborated with Tom Fox on the Proximity Mixer installation as part of collective Gwaith Sŵn. Exhibited at LCC, Universität der Künste Berlin and Science Gallery London.",
-      links:[{label:"Website", url:"https://kevinkaweichan.com/"}]},
-    {name:"Charles Matthews", tags:["sound-artist","creative-technologist"], event:"Artist Profile archive",
-      bio:"Sound artist and creative technologist working on augmented instruments and software for live performance and accessibility. Works with Drake Music and Hackoustic; teaches sonic arts at City Lit.",
-      links:[{label:"Website", url:"http://ardisson.net/"},{label:"Instagram", url:"https://www.instagram.com/lightrecorders/"},{label:"Twitter", url:"https://twitter.com/matthewscharles"}]},
-    {name:"Diržytė (Gouda)", tags:["instrument-builder","composer"], event:"Hackoustic Presents, April 2018",
-      bio:"Experimental music instrument designer, composer and sound artist working between the UK and Lithuania. Builds generative sound installations from self-built, electronics-augmented instrumentation, examining Eurocentrism in musical culture.",
-      links:[{label:"Performance video", url:"https://vimeo.com/233489258"}]},
-    {name:"Ana Berkenhoff", tags:["performer","instrument-builder"], event:"Hackoustic Presents, April 2018",
-      bio:"Versatile artist working across music, theatre, film, poetry, instrument building and installation. Regular UK/Germany performer, featured on Radio 3's Late Junction, BBC Introducing and Radiophrenia Glasgow.",
-      links:[]},
-    {name:"Kuljit Bhamra", tags:["musician","educator"], event:"Hackoustic Village, 2017",
-      bio:"Musician, performer and record producer; a pioneer of the British Bhangra sound and tabla player on Hollywood soundtracks. Runs Keda Music, developing tools to make Indian drumming more accessible.",
-      links:[]},
-    {name:"Andrew McPherson", tags:["researcher","instrument-builder"], event:"Hackoustic Village, 2017",
-      bio:"Electrical engineer and composer who leads the Augmented Instruments Laboratory at Queen Mary University of London, and created Bela, an open-source platform for ultra-low-latency audio and sensor processing.",
-      links:[]},
-    {name:"Stewart Easton", tags:["textile","installation"], event:"Hackoustic Village, 2017",
-      bio:"Artist behind interactive tapestries that combine textile craft with sound and electronics.",
-      links:[]},
-    {name:"Chloe (Studio Meineck)", tags:["designer","social-purpose"], event:"Hackoustic Presents, May 2017",
-      bio:"Designer, maker, inventor and social entrepreneur based in Bristol and London. Founded Studio Meineck in 2016, working at the intersection of technology, craft and design with a focus on inclusive design.",
-      links:[]},
-    {name:"Diego Baresch", tags:["researcher","acoustics"], event:"Hackoustic Presents, May 2017",
-      bio:"Post-doctoral researcher in Acoustics at Imperial College London, working on levitating and moving objects with sound waves, with a view to potential new cancer treatments.",
-      links:[]},
-    {name:"Rodrigo", tags:["educator","community-artist"], event:"Hackoustic Presents, May 2017",
-      bio:"Portuguese Community Artist and Educator using music and making to work with people of all ages; runs workshops on didgeridoo-making from upcycled materials.",
-      links:[]},
-    {name:"Look Mum No Computer", tags:["instrument-builder","electronics"], event:"Hackoustic Village, 2017",
-      bio:"Synth builder best known for the Synth Bike series of DIY modular instruments.",
-      links:[]},
-    {name:"DADAMachines", tags:["instrument-builder","electronics"], event:"We Are Robots, 2017",
-      bio:"Makers of modular hardware for turning everyday objects into playable instruments — demoed the Automat at Hackoustic's V&A appearance.",
-      links:[]},
-    {name:"Tim Murray-Browne", tags:["sound-artist","creative-coder"], event:"Hackoustic Presents, June 2018",
-      bio:"Artist and creative coder based in London working with code, sound, graphics and interactive technology, creating immersive spaces for installation and live performance that respond to the movement of the body.",
-      links:[]},
-    {name:"Stephen Shiell & Hannah White", tags:["sound-artist","performer"], event:"Hackoustic Presents, June 2018",
-      bio:"Combine poetry, sonic art and hand-made instruments in installations and performances — including Stephen's Ship's Opera, a live operatic concerto of ships' steam whistles, bells, horns and sirens.",
-      links:[]},
-    {name:"Laurel Smith-Pardue", tags:["performer"], event:"Hackoustic Presents, June 2018",
-      bio:"Performer working with an augmented violin.",
-      links:[]},
-    {name:"Blanc Sceol", tags:["instrument-builder","performer"], event:"Hackoustic Presents, June 2018",
-      bio:"Plays beautiful hand-made acoustic instruments.",
-      links:[]},
-    {name:"Lula Mebrahtu", tags:["musician"], event:"Hackoustic Presents, EFG London Jazz Festival 2021",
-      bio:"Vocalist and early adopter of the MiMu interactive glove controller, using it to push the evolution of live music performance.",
-      links:[{label:"Website", url:"https://www.lulamebrahtu.com/"}]},
-    {name:"Jack Jelfs", tags:["sound-artist"], event:"The Hackompilation, 2020", bio:"Sound artist featured on The Hackompilation, Hackoustic's album for Iklectik.", links:[]},
-    {name:"Phlegmm", tags:["sound-artist"], event:"The Hackompilation, 2020", bio:"Sound artist featured on The Hackompilation.", links:[]},
-    {name:"Harky", tags:["sound-artist"], event:"The Hackompilation, 2020", bio:"Sound artist featured on The Hackompilation.", links:[]},
-    {name:"Kelly Snook", tags:["sound-artist"], event:"The Hackompilation, 2020", bio:"Sound artist featured on The Hackompilation.", links:[]},
-    {name:"Frazer Merrick", tags:["sound-artist"], event:"The Hackompilation, 2020 / Hackoustic Orchestra, 2024", bio:"Sound artist featured on The Hackompilation and, later, the Hackoustic Orchestra line-up.", links:[]},
-    {name:"Helen Leigh", tags:["electronics","sculpture"], event:"The Hackompilation, 2020", bio:"Maker of circuit-sculpture creatures — electronics-driven sculptural sound work.", links:[]},
-    {name:"Noum", tags:["sound-artist"], event:"The Hackompilation, 2020", bio:"Sound artist featured on The Hackompilation.", links:[]},
-    {name:"#BarrysLounge", tags:["dj"], event:"Resident DJ, ongoing", bio:"Hackoustic's resident DJ, a fixture spinning discs at Hackoustic Presents nights.", links:[]}
-  ];
+/* =========================================================================
+   DATA
+   ========================================================================= */
 
-  const STORAGE_KEY = "hackoustic-directory-v2";
-  let artists = [];
-  let activeTag = "all";
+const ARTISTS_SEED = [
+  {name:"Tim Yates", tags:["founder","instrument-builder","sound-artist"], event:"Founder & Director, ongoing", image:"",
+    bio:"Award-winning instrument builder, sound-artist and musician who makes, builds and finds instruments for performance and installation. Shown work at the Tate Modern, the V&A and Xi'an International Maker Faire. Runs the R&D programme at Drake Music and produces for Music Tech Fest.",
+    links:[{label:"Website", url:"http://timyates.net/"},{label:"Twitter", url:"https://twitter.com/TimYatesSounds"}]},
+  {name:"Vulpestruments (Tom Fox)", tags:["founder","creative-director","instrument-builder","educator"], event:"Founder & Creative Director, ongoing", image:"",
+    bio:"Tom Fox's project exploring reclaimed materials and odd bits of physics and technology to find new methods of sound creation and interaction. Shown at the Tate Modern, the V&A, the Royal College of Music and Art; runs workshops at UCA, LCC and Brighton University.",
+    links:[{label:"Website", url:"https://vulpestruments.com/"},{label:"Twitter", url:"https://twitter.com/Vulpestruments"},{label:"Instagram", url:"https://www.instagram.com/vulpestruments/"}]},
+  {name:"Gawain Hewitt", tags:["composer","educator"], event:"Hackoustic Presents, 2017 & 2018", image:"",
+    bio:"Artist and composer known for combining technology with more traditional musical and artistic practices. Shown at Spitalfields Festival, the V&A and Tate Modern; part of the team that won the European Space Agency prize at Music Tech Fest 2018 for a satellite-data sonification piece.",
+    links:[{label:"Website", url:"http://gawainhewitt.co.uk/"},{label:"Twitter", url:"https://twitter.com/GawainHewitt"},{label:"Instagram", url:"https://www.instagram.com/gawainhewitt/"}]},
+  {name:"Adrian Holder (Precis)", tags:["sound-artist","electronics"], event:"Artist Profile archive", image:"",
+    bio:"Sound and visual artist who processes real-world sounds using anything from a hacked radio to MAX for Live, working across genres to convey the balance between audio and visual perception.",
+    links:[]},
+  {name:"Jen Haugan", tags:["designer","sound-artist"], event:"Hackoustic Presents, Aug 2017", image:"",
+    bio:"Multidisciplinary designer with an MA in Information Experience Design from the RCA, creating tangible experiences with light and sound. Exhibited at Sónar+D and IRCAM. Runs design collective Studio Strohm.",
+    links:[{label:"Website", url:"http://jenhaugan.com/"},{label:"Studio Strohm", url:"http://www.studiostrohm.com/"}]},
+  {name:"Richard Grant (Son.im)", tags:["sound-artist","sculpture"], event:"Artist Profile archive", image:"",
+    bio:"Founder of Son.im, a studio bridging art and show-craft. Sculptural work combines acoustics with sight and smell to encourage audience participation. Has worked with NASA, Disney and Abbey Road Studios.",
+    links:[{label:"Website", url:"https://son.im/"}]},
+  {name:"Ashleigh Fisk", tags:["ceramics","sound-artist"], event:"Hackoustic Presents, Nov 2018", image:"",
+    bio:"Multimedia artist working in ceramics, performance and sound, using archaeological and contemporary ceramics to summon historical characters through timeless sounds and folkloric narrative.",
+    links:[]},
+  {name:"MyPandaShallFly (Suren Seneviratne)", tags:["musician","producer"], event:"Artist Profile archive", image:"",
+    bio:"London-based producer whose remix work first got Pitchfork's attention in 2010. Has remixed The Weeknd and Little Boots, and played BBC Hackney Weekender, Outlook and Glade.",
+    links:[{label:"Facebook", url:"https://www.facebook.com/mypandashallfly"},{label:"Twitter", url:"https://twitter.com/mypandashallfly"},{label:"Instagram", url:"https://www.instagram.com/mypandashallfly/"}]},
+  {name:"Andrew Hockey", tags:["composer","instrument-builder"], event:"Artist Profile archive", image:"",
+    bio:"Composer and music technologist specialising in interactive instruments that let music be experienced outside a linear form. Featured on BBC Click, Berlin Maker Faire and the Old Truman Brewery.",
+    links:[{label:"Website", url:"https://www.andrewhockey.com/"},{label:"Instagram", url:"https://www.instagram.com/andrewrhockey/"}]},
+  {name:"Adam Paroussos (Bamboo Mustard)", tags:["sound-designer","performer"], event:"Hackoustic Presents, Nov 2018", image:"",
+    bio:"Sound designer, composer and performer who builds instruments and sound costumes for improvised audience performance. Runs multi-disciplinary event series Crossspace.",
+    links:[{label:"Website", url:"https://adammk25.wixsite.com/adamparoussos/"},{label:"Instagram", url:"https://www.instagram.com/bamboo_mustard/"},{label:"YouTube", url:"https://www.youtube.com/channel/UCv9xaXYGZaypHWRJG5wNwIQ"}]},
+  {name:"Brendan O'Connor", tags:["music-technologist","researcher"], event:"Artist Profile archive", image:"",
+    bio:"Music technologist working on sound installations, compositions and audio applications. PhD student at Queen Mary University of London researching vocal behaviour with machine learning. Shown at Ars Electronica and We Are Robots.",
+    links:[{label:"Website", url:"http://www.brendanoconnormusic.com/"}]},
+  {name:"Mother Disorder", tags:["performer","electronics"], event:"Hackoustic Presents, June 2018", image:"",
+    bio:"Performance piece Crystalline uses body-mounted microphones and foreboding electronic music, blending performance art and dark improvised sound around mental illness and neurodiversity.",
+    links:[{label:"Website", url:"http://www.motherdisorder.co.uk/"},{label:"SoundCloud", url:"https://soundcloud.com/motherdisorder"},{label:"Facebook", url:"https://www.facebook.com/MotherDisorder/"}]},
+  {name:"Nick Murray", tags:["composer","producer"], event:"Hackoustic Village, 2017", image:"",
+    bio:"London-based writer, composer and producer.",
+    links:[{label:"Website", url:"http://www.nickmurray.horse/"}]},
+  {name:"Amy Cutler", tags:["sound-artist","curator","researcher"], event:"Hackoustic Presents, Sept 2018 / Iklectik, 2021", image:"",
+    bio:"Artist, cultural geographer, curator, writer and film-maker working with geography and nonhuman others. Has run live events with the BBC, Somerset House, Sheffield Doc/Fest, the Wellcome Trust, the Horniman Museum and Tate Modern. Performs as RAVINE/MACHINE with Scott Pitkethly.",
+    links:[]},
+  {name:"Dom Aversano", tags:["percussionist","composer"], event:"Hackoustic Village, 2017 / Presents, Oct 2017", image:"",
+    bio:"Multi-instrumentalist percussionist and composer whose primary instrument is the handpan, strongly influenced by konnakol, the Indian rhythmic vocal language.",
+    links:[{label:"Website", url:"https://www.domaversano.com/"}]},
+  {name:"Antosh Wojcik", tags:["poet","performer"], event:"We Are Robots, 2017 / Presents, Aug 2017", image:"",
+    bio:"Poet, performer and Lecturer of Poetry and Creative Writing at the University of Winchester. One half of sound-art duo Post Everything.",
+    links:[]},
+  {name:"Jenn Kirby", tags:["composer","music-technologist"], event:"Hackoustic Village, 2017 / Presents, Aug 2017", image:"",
+    bio:"Composer, performer, lecturer and music technologist. Programme Leader for MA Music at the University of the West of Scotland; founder of the Swansea Laptop Orchestra and Vice-President of the Irish Sound, Science and Technology Association.",
+    links:[{label:"Website", url:"http://www.jennkirby.com/"}]},
+  {name:"Cutlasses (Scott Pitkethly)", tags:["sound-artist","musician"], event:"The Hackompilation, 2020 / Iklectik, 2021 (as RAVINE/MACHINE)", image:"",
+    bio:"Solo project integrating the process of making music with the process of building the tools to make it — field recordings manipulated by DIY electronics, live guitar drones and cinematic melody. Also performs as RAVINE/MACHINE with Amy Cutler.",
+    links:[]},
+  {name:"Gordon Charlton (Beat Frequency)", tags:["musician","theremin"], event:"Artist Profile archive", image:"",
+    bio:"Records and performs experimental theremin and computer-based music as Beat Frequency. Opened for thereminist Lydia Kavina at the 2010 Ether Festival, Royal Festival Hall.",
+    links:[]},
+  {name:"Eastman Presser", tags:["sound-artist","performer"], event:"We Are Robots, 2017", image:"",
+    bio:"London-based musicker whose practice uses the interaction of sound and the body to playfully question how we listen and what counts as music — performed as Good Listener.",
+    links:[{label:"Blog", url:"https://goodlistenershow.wordpress.com/"}]},
+  {name:"Bo Keeney", tags:["musician","instrument-builder"], event:"Hackoustic Village at We Are Robots", image:"",
+    bio:"Musician performing with a self-built, gesture-controlled instrument. Founded London Interactive Music Meetup (2015–17); released 13+ EPs and albums before moving into real-time responsive music research.",
+    links:[{label:"SoundCloud", url:"https://soundcloud.com/bokeeney"}]},
+  {name:"Kevin Ka Wei Chan (Gwaith Sŵn)", tags:["sound-artist","collective"], event:"Hackoustic Presents, 2017", image:"",
+    bio:"London-based sound artist exploring memory, temporal location and political economy through redundant, discarded consumer audio technology. Collaborated with Tom Fox on the Proximity Mixer installation as part of collective Gwaith Sŵn. Exhibited at LCC, Universität der Künste Berlin and Science Gallery London.",
+    links:[{label:"Website", url:"https://kevinkaweichan.com/"}]},
+  {name:"Charles Matthews", tags:["sound-artist","creative-technologist"], event:"Gamelan, Pringles and Toys, Nov 2015", image:"",
+    bio:"Sound artist and creative technologist working on augmented instruments and software for live performance and accessibility. Works with Drake Music and Hackoustic; teaches sonic arts at City Lit.",
+    links:[{label:"Website", url:"http://ardisson.net/"},{label:"Instagram", url:"https://www.instagram.com/lightrecorders/"},{label:"Twitter", url:"https://twitter.com/matthewscharles"}]},
+  {name:"Diržytė (Gouda)", tags:["instrument-builder","composer"], event:"Hackoustic Presents, April 2018", image:"",
+    bio:"Experimental music instrument designer, composer and sound artist working between the UK and Lithuania. Builds generative sound installations from self-built, electronics-augmented instrumentation, examining Eurocentrism in musical culture.",
+    links:[{label:"Performance video", url:"https://vimeo.com/233489258"}]},
+  {name:"Ana Berkenhoff", tags:["performer","instrument-builder"], event:"Hackoustic Presents, April 2018", image:"",
+    bio:"Versatile artist working across music, theatre, film, poetry, instrument building and installation. Regular UK/Germany performer, featured on Radio 3's Late Junction, BBC Introducing and Radiophrenia Glasgow.",
+    links:[]},
+  {name:"Kuljit Bhamra", tags:["musician","educator"], event:"Hackoustic Village 2017 / Presents, Oct 2017", image:"",
+    bio:"Musician, performer and record producer; a pioneer of the British Bhangra sound and tabla player on Hollywood soundtracks. Runs Keda Music, developing tools to make Indian drumming more accessible.",
+    links:[{label:"Website", url:"http://www.kuljitbhamra.com/"}]},
+  {name:"Andrew McPherson", tags:["researcher","instrument-builder"], event:"Hackoustic Village, 2017", image:"",
+    bio:"Electrical engineer and composer who leads the Augmented Instruments Laboratory at Queen Mary University of London, and created Bela, an open-source platform for ultra-low-latency audio and sensor processing.",
+    links:[]},
+  {name:"Stewart Easton", tags:["textile","installation"], event:"Hackoustic Village, 2017", image:"",
+    bio:"Artist behind interactive tapestries that combine textile craft with sound and electronics.",
+    links:[]},
+  {name:"Chloe Meineck", tags:["designer","social-purpose"], event:"Hackoustic Presents, May 2017", image:"",
+    bio:"Designer, maker, inventor and social entrepreneur based in Bristol and London. Founded Studio Meineck in 2016, working at the intersection of technology, craft and design — including Memory Boxes to support people with dementia.",
+    links:[{label:"Website", url:"http://chloemeineck.co.uk/"}]},
+  {name:"Diego Baresch", tags:["researcher","acoustics"], event:"Hackoustic Presents, May 2017", image:"",
+    bio:"Post-doctoral researcher in Acoustics at Imperial College London, working on levitating and moving objects with sound waves, with a view to potential new cancer treatments.",
+    links:[]},
+  {name:"Rodrigo Viterbo", tags:["educator","community-artist"], event:"Hackoustic Presents, May 2017", image:"",
+    bio:"Portuguese Community Artist and Educator using music and making to work with people of all ages; runs workshops on didgeridoo-making from upcycled materials, including toilet rolls.",
+    links:[{label:"Website", url:"http://www.rodrigoviterbo.com/"}]},
+  {name:"Look Mum No Computer", tags:["instrument-builder","electronics"], event:"Hackoustic Village, 2017", image:"", bio:"Synth builder best known for the Synth Bike series of DIY modular instruments.", links:[]},
+  {name:"DADAMachines", tags:["instrument-builder","electronics"], event:"We Are Robots 2017 / Showcase, Apr 2017", image:"",
+    bio:"Berlin-based studio led by Johannes Lohbihler making music machines accessible to everyone. Their Automat toolkit Kickstarter hit 600% funding around the time of Hackoustic's showcase at Machines Room.",
+    links:[{label:"Website", url:"http://dadamachines.com/en/"}]},
+  {name:"Tim Murray-Browne", tags:["sound-artist","creative-coder"], event:"Hackoustic Presents, June 2018", image:"",
+    bio:"Artist and creative coder based in London working with code, sound, graphics and interactive technology, creating immersive spaces for installation and live performance that respond to the movement of the body.",
+    links:[]},
+  {name:"Stephen Shiell", tags:["sound-artist","performer"], event:"Presents, Mar 2017 & June 2018", image:"",
+    bio:"Combines poetry, sonic art and hand-made instruments in installations and performances — including Ship's Opera, a live operatic concerto of ships' steam whistles, bells, horns and sirens on the VIC 96. Performs with Hannah White.",
+    links:[{label:"Website", url:"http://www.stephenshiell.co.uk"}]},
+  {name:"Laurel Smith-Pardue", tags:["performer"], event:"Hackoustic Presents, June 2018", image:"", bio:"Performer working with an augmented violin.", links:[]},
+  {name:"Blanc Sceol", tags:["instrument-builder","performer"], event:"Hackoustic Presents, June 2018", image:"", bio:"Plays beautiful hand-made acoustic instruments.", links:[]},
+  {name:"Lula Mebrahtu", tags:["musician"], event:"Daylight Music 339, EFG London Jazz Festival 2021", image:"",
+    bio:"Vocalist and early adopter of the MiMu interactive glove controller, using it to push the evolution of live music performance.",
+    links:[{label:"Website", url:"https://www.lulamebrahtu.com/"}]},
+  {name:"Jack Jelfs", tags:["sound-artist"], event:"Hacking Session, Apr 2016 / The Hackompilation, 2020", image:"",
+    bio:"Sound artist behind Stop / Start, an ensemble of sculptural units generating sound to perform a musical composition on an endless, never-exactly-repeating loop. Shown at The Conservatoire, Blackheath.", links:[]},
+  {name:"Phlegmm", tags:["sound-artist"], event:"The Hackompilation, 2020", image:"", bio:"Sound artist featured on The Hackompilation.", links:[]},
+  {name:"Harky", tags:["sound-artist"], event:"The Hackompilation, 2020", image:"", bio:"Sound artist featured on The Hackompilation.", links:[]},
+  {name:"Kelly Snook", tags:["sound-artist"], event:"The Hackompilation, 2020", image:"", bio:"Sound artist featured on The Hackompilation.", links:[]},
+  {name:"Frazer Merrick", tags:["sound-artist"], event:"The Hackompilation, 2020 / Hackoustic Orchestra, 2024", image:"", bio:"Sound artist featured on The Hackompilation and, later, the Hackoustic Orchestra line-up at Daylight Music 382.", links:[]},
+  {name:"Helen Leigh", tags:["electronics","sculpture"], event:"The Hackompilation, 2020", image:"", bio:"Maker of circuit-sculpture creatures — electronics-driven sculptural sound work.", links:[]},
+  {name:"Noum", tags:["sound-artist"], event:"The Hackompilation, 2020", image:"", bio:"Sound artist featured on The Hackompilation.", links:[]},
+  {name:"#BarrysLounge", tags:["dj"], event:"Resident DJ, ongoing", image:"", bio:"Hackoustic's resident DJ, a fixture spinning discs at Hackoustic Presents nights since at least 2017.", links:[{label:"Website", url:"http://www.barryslounge.co.uk/"}]},
+  {name:"Jacob Harrison", tags:["instrument-builder","researcher"], event:"Hackoustic Presents, Oct 2017", image:"", bio:"PhD researcher in accessible instrument design; showed his one-handed bass guitar at Hackoustic Presents.", links:[{label:"Blog", url:"https://jtfh.wordpress.com/"}]},
+  {name:"John Kelly", tags:["musician","accessibility"], event:"Hackoustic Presents, Aug 2017", image:"", bio:"Musician behind the Kellycaster, an accessible instrument developed with Drake Music and Gawain Hewitt.", links:[{label:"Website", url:"http://www.rockinpaddy.com"}]},
+  {name:"Tasos Stamou", tags:["instrument-builder","sound-artist"], event:"Gamelan, Pringles and Toys, Nov 2015", image:"", bio:"Sound artist and instrument builder who showed work at Hackoustic's early London Hackspace sessions.", links:[]},
+  {name:"Optonoise (Stan Lewry)", tags:["instrument-builder","electronics"], event:"Laser Synthesis, Jul 2016 / Optomodule, Feb 2016", image:"", bio:"Builders of the Epsilonograph and Optomodule — experimental laser-beam instruments for generating sound and visuals, shown at Music Tech Fest Berlin and the new Tate Modern wing opening.", links:[{label:"SoundCloud", url:"https://soundcloud.com/opto-noise"}]},
+  {name:"Blanca Regina & Matthias Kispert", tags:["sound-artist","educator"], event:"Material Studies, Jan 2016", image:"", bio:"Ran the Material Studies workshop exploring the spontaneous sound within matter.", links:[{label:"Website", url:"http://www.whiteemotion.com/"}]},
+  {name:"Craig Scott's Lobotomy", tags:["sound-artist"], event:"Iklectik, Oct 2021 / Presents, Feb 2022", image:"", bio:"Brings feedback mobiles and experimental sound installations to Hackoustic Presents nights.", links:[]},
+  {name:"Hannah Kemp-Welch", tags:["sound-artist","researcher"], event:"Iklectik, Oct 2021", image:"", bio:"Artist researching DIY antennas and radio receivers, showcased at Hackoustic's Iklectik night in October 2021.", links:[]},
+  {name:"Sarah Angliss", tags:["composer","instrument-builder"], event:"Hackoustic Presents, March 2023", image:"", bio:"Composer and roboticist working at the intersection of music, robotics and folklore, on the bill for Hackoustic's March 2023 Presents night.", links:[]},
+  {name:"Eevee Zayas", tags:["musician"], event:"Hackoustic Presents, March 2023", image:"", bio:"Musician featured on the March 2023 Hackoustic Presents line-up.", links:[]}
+];
 
-  function loadData(){
-    try{
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if(raw){ artists = JSON.parse(raw); return; }
-    }catch(e){ /* fall through to seed */ }
-    artists = SEED.map((a,i)=>({...a, id:"seed-"+i}));
-    saveData();
+// Chronological (oldest → newest). Dates as published; some early posts only
+// give month/year. sourceUrl links back to the original hackoustic.org post.
+const EVENTS_SEED = [
+  {title:"Maker Faire", date:"15 Nov 2014", venue:"Elephant & Castle Mini Maker Faire", desc:"Hackoustic's early appearance at the Elephant & Castle Mini Maker Faire, meeting fellow makers and showing early projects including The Frame.", sourceUrl:"https://hackoustic.org/maker-faire-sat-15th-nov-2014/"},
+  {title:"Turbine Festival", date:"25 Jul 2015", venue:"Tate Modern", desc:"An estimated 28,000 people through Tate Modern's doors — the largest and most successful event Hackoustic had taken part in at the time.", sourceUrl:"https://hackoustic.org/turbine-festival-sat-25th-july-2015/"},
+  {title:"Maker Mile Gig", date:"21 Sep 2015", venue:"Limewharf, London Design Festival", desc:"Part of the London Design Festival 2015, presenting projects at Limewharf cultural innovation hub, supporting the Maker Mile's Open Mile night.", sourceUrl:"https://hackoustic.org/maker-mile-gig-monday-21st-september-2015/"},
+  {title:"Gamelan, Pringles and Toys", date:"29 Nov 2015", venue:"London Hackspace", desc:"Charles Matthews, Tom Fox and Tasos Stamou showed work and ran workshops to the biggest crowd yet at a Hackoustic session.", sourceUrl:"https://hackoustic.org/gamelan-pringles-and-toys-29th-november-2015/"},
+  {title:"Material Studies", date:"31 Jan 2016", venue:"London Hackspace", desc:"Blanca Regina and Matthias Kispert ran a Material Studies workshop — spontaneous explorations of the sound within matter.", sourceUrl:"https://hackoustic.org/31st-january-2016-material-studies/"},
+  {title:"The Optomodule", date:"28 Feb 2016", venue:"London Hackspace", desc:"Optonoise demonstrated the Optomodule, an experimental instrument using laser beams to generate sound and visuals.", sourceUrl:"https://hackoustic.org/sunday-28th-february-introducing-the-optomodule/"},
+  {title:"Jack Jelfs: Stop / Start", date:"24 Apr 2016", venue:"London Hackspace", desc:"Jack Jelfs demonstrated his sound-art installation Stop / Start, recently shown at The Conservatoire in Blackheath.", sourceUrl:"https://hackoustic.org/jack-jelfs-sunday-24th-april-2016/"},
+  {title:"Hackoustic Festival 2016", date:"Jun 2016", venue:"London", desc:"Hackoustic's first ever festival, showcasing the musicians and artists associated with the group.", sourceUrl:"https://hackoustic.org/hackoustic-festival-2016/"},
+  {title:"Laser Synthesis", date:"Jul 2016", venue:"London Hackspace", desc:"Stan Lewry of the Optosynth/Optonoise team demoed a new laser keyboard and laser mixing desk, fresh from Music Tech Fest Berlin.", sourceUrl:"https://hackoustic.org/laser-synthesis-july-2016/"},
+  {title:"Uniqlo Tate Late", date:"28 Oct 2016", venue:"Tate Modern", desc:"Hackoustic took over the entire Switch House with 13 different installations at the first ever Uniqlo Tate Late.", sourceUrl:"https://hackoustic.org/uniqlo-tate-late-28th-october-2016/"},
+  {title:"Hackoustic Presents: January 2017", date:"27 Jan 2017", venue:"London", desc:"A sell-out night of performances, talks, demonstrations and installations with a positive, enthusiastic crowd.", sourceUrl:"https://hackoustic.org/27th-january-2017-hackoustic-presents/"},
+  {title:"Hackoustic Presents: 24th March 2017", date:"24 Mar 2017", venue:"London", desc:"Featuring Stephen Shiell, Tim Yates, Nick Murray and Robert Blaauboer, with #BarrysLounge on the decks.", sourceUrl:"https://hackoustic.org/hackoustic-presents-24th-march-2017/"},
+  {title:"DADAMachines Showcase", date:"12 Apr 2017", venue:"Machines Room", desc:"An evening with Johannes Lohbihler of dadamachines, whose Automat toolkit Kickstarter was 600% funded by showcase night.", sourceUrl:"https://hackoustic.org/showcase-dada-machines-12th-april/"},
+  {title:"Hackoustic Presents: 27th May 2017", date:"27 May 2017", venue:"London", desc:"Acoustic circuit bending, dementia-support Memory Boxes, sound levitation and toilet-roll didgeridoos.", sourceUrl:"https://hackoustic.org/hackoustic-presents-27th-may-2017/"},
+  {title:"V&A Digital Design Drop-in", date:"24 Jun 2017", venue:"V&A Museum", desc:"Tom Fox (Vulpestruments) and Nick Murray showed projects, plus a demo of the DADAMachines Automat in the sculpture hall.", sourceUrl:"https://hackoustic.org/va-digital-design-drop-sat-24th-june-2017/"},
+  {title:"Hackoustic Presents: 5th August 2017", date:"5 Aug 2017", venue:"London", desc:"John Kelly & Gawain Hewitt with the Kellycaster, Jenn Kirby with repurposed controllers, Antosh Wojcik, Nick Murray and Jen Haugan.", sourceUrl:"https://hackoustic.org/hackoustic-presents-5th-august-2017/"},
+  {title:"Hackoustic Presents: 6th October 2017", date:"6 Oct 2017", venue:"London", desc:"Kuljit Bhamra demonstrating the Evolution of the Tabla Drum, Dom Aversano on hang-drum, Jacob Harrison's one-handed bass guitar.", sourceUrl:"https://hackoustic.org/hackoustic-presents-oct-2017/"},
+  {title:"Hackoustic Village at We Are Robots", date:"Nov 2017", venue:"Old Truman Brewery, Brick Lane", desc:"A four-day festival dedicated to the future of music, with sound-art installations, experimental instruments and sonic research on display.", sourceUrl:"https://hackoustic.org/hackoustic-village-at-we-are-robots/"},
+  {title:"Hackoustic Xmas Party", date:"Dec 2017", venue:"London", desc:"Annual Hackoustic Christmas celebration.", sourceUrl:"https://hackoustic.org/hackoustic-xmas-party-2017/"},
+  {title:"Hackoustic Presents: 21st April 2018", date:"21 Apr 2018", venue:"Iklectik Art Lab", desc:"Gouda Diržytė performing hand-made electro-acoustic instruments, and Ana Berkenhoff presenting instruments made with Yuri Landmann.", sourceUrl:"https://hackoustic.org/hackoustic-presents-21st-april-2018/"},
+  {title:"Hackoustic Presents: 23rd June 2018", date:"23 Jun 2018", venue:"London", desc:"Tim Murray-Browne, Mother Disorder, Laurel Smith-Pardue and Stephen Shiell & Hannah White.", sourceUrl:"https://hackoustic.org/hackoustic-presents-23rd-june-2018/"},
+  {title:"Hackoustic Presents: 14th September 2018", date:"14 Sep 2018", venue:"London", desc:"Amy Cutler with Sylvia Hallett, YOAF and Rita Evans, plus installations from Giacomo Lepri and Vulpestruments.", sourceUrl:"https://hackoustic.org/hackoustic-presents-14th-sept-2018/"},
+  {title:"Hackoustic Presents: November 2018", date:"Nov 2018", venue:"London", desc:"Featuring Ashleigh Fisk and Adam Paroussos (Bamboo Mustard), among others.", sourceUrl:"https://hackoustic.org/hackoustic-presents-nov-2018/"},
+  {title:"Abbey Road Hackathon", date:"Dec 2018", venue:"Abbey Road Studios", desc:"Hackoustic helped organise the first ever hackathon at the legendary Abbey Road Studios.", sourceUrl:"https://hackoustic.org/abbey-road-hackathon-december-2018/"},
+  {title:"Hackoustic Xmas Party", date:"Dec 2018", venue:"London", desc:"Annual Hackoustic Christmas celebration.", sourceUrl:"https://hackoustic.org/hackoustic-xmas-party/"},
+  {title:"Hackoustic Presents: February 2019", date:"2 Feb 2019", venue:"Iklectik Art Lab", desc:"The first Hackoustic Presents of 2019.", sourceUrl:"https://hackoustic.org/hackoustic-presents-feb-2019/"},
+  {title:"Hackoustic Presents: May 2019", date:"May 2019", venue:"London", desc:"Another Hackoustic Presents night of performances and installations.", sourceUrl:"https://hackoustic.org/hackoustic-presents-may-2019/"},
+  {title:"Hackoustic Presents: June 2019", date:"29 Jun 2019", venue:"Iklectik Art Lab", desc:"Hackoustic Presents at Iklectik.", sourceUrl:"https://hackoustic.org/hackoustic-presents-june-2019/"},
+  {title:"Hackoustic Presents: September 2019", date:"Sep 2019", venue:"London", desc:"Hackoustic Presents night.", sourceUrl:"https://hackoustic.org/hackoustic-presents-september-2019/"},
+  {title:"Tate Late", date:"29 Nov 2019", venue:"Tate Modern", desc:"Hackoustic curated an area for Tate Lates, with interactive installations and performances inspired by Nam June Paik.", sourceUrl:"https://hackoustic.org/tate-late-29th-november-2019/"},
+  {title:"The Hackoustic Orchestra @ Union Chapel", date:"14 Mar 2020", venue:"Union Chapel, Islington", desc:"Part of the Daylight Music concert series — pay-what-you-can, doors at noon.", sourceUrl:"https://hackoustic.org/the-hackoustic-orchestra-the-union-chapel/"},
+  {title:"The Hackompilation", date:"20 Mar 2020", venue:"Bandcamp, for Iklectik", desc:"A compilation album for Iklectik featuring Jack Jelfs, Phlegmm, Harky, Cutlasses, Kelly Snook, Jenn Kirby, Frazer Merrick, Helen Leigh, Dom Aversano and Noum.", sourceUrl:"https://hackoustic.bandcamp.com/"},
+  {title:"Hackoustic Presents", date:"Feb 2022", venue:"Iklectik Art Lab", desc:"A night of talks, demonstrations and performances with Kai Labs, Craig Scott's Lobotomy, Hugh Aynsley and Joseph Lyons.", sourceUrl:"https://hackoustic.org/hackoustic-presents-february/"},
+  {title:"Great Exhibition Road Festival", date:"2022", venue:"South Kensington", desc:"Hackoustic appearance at the Great Exhibition Road Festival.", sourceUrl:"https://hackoustic.org/home-great-exhibition-rd-festival/"},
+  {title:"Hackoustic Presents", date:"May 2022", venue:"London", desc:"Hackoustic Presents night.", sourceUrl:"https://hackoustic.org/post-2117-copy/"},
+  {title:"Hackoustic Festival", date:"Oct 2022", venue:"London", desc:"An all-day Hackoustic festival.", sourceUrl:"https://hackoustic.org/all-dayer-oct2022/"},
+  {title:"IKLECTIK presents, Hackoustic", date:"23 Oct 2021", venue:"Iklectik Art Lab", desc:"Amy Cutler & Scott Pitkethly as RAVINE/MACHINE, Craig Scott's Lobotomy's feedback mobiles, Hannah Kemp-Welch's DIY radio research, Vulpestruments and #BarrysLounge.", sourceUrl:"https://iklectikartlab.com/hackoustic-5/"},
+  {title:"Daylight Music 339 — EFG London Jazz Festival", date:"20 Nov 2021", venue:"St John's, Waterloo", desc:"Hackoustic presented as part of the EFG London Jazz Festival: Lula.xyz & Aby Vulliamy, Alya Al-Sultani & Gawain Hewitt, Tom Fox & Samuel Sharp.", sourceUrl:"https://www.eventbrite.com/e/dm-efg-london-jazz-festival-hackoustic-presents-tickets-166775149963"},
+  {title:"Hackoustic Christmas Party", date:"17 Dec 2022", venue:"Iklectik Art Lab", desc:"Interactive performances, new instruments and audience participation — with Lula Mebrahtu and Robin the Fog's Howlaround.", sourceUrl:"https://iklectikartlab.com/hackoustic-christmas-party-2/"},
+  {title:"Daylight Music — February 2023", date:"Feb 2023", venue:"London", desc:"Hackoustic as part of the Daylight Music series.", sourceUrl:"https://hackoustic.org/daylight-music-feb-2023/"},
+  {title:"Hackoustic Presents: March 2023", date:"25 Mar 2023", venue:"Iklectik Art Lab", desc:"Sarah Angliss, Kogg, Mode Collapse, Tom Fox, Tim Yates and Eevee Zayas.", sourceUrl:"https://hackoustic.org/hackoustic-presents-march-2023/"},
+  {title:"Hackoustic All Dayer", date:"17 Jun 2023", venue:"Iklectik Art Lab", desc:"A full-day Hackoustic event, 2pm–10:30pm.", sourceUrl:"https://hackoustic.org/hackoustic-all-dayer-june-2023/"},
+  {title:"Hackoustic Presents: November 2023", date:"11 Nov 2023", venue:"Iklectik Art Lab", desc:"An evening of live music and interactive sound installations exploring new ways to experience sound.", sourceUrl:"https://hackoustic.org/hackoustic-presents-nov-2023/"},
+  {title:"Daylight Music 382", date:"26 Oct 2024", venue:"St John's, Leytonstone", desc:"Frazer Merrick, KOGG and the Hackoustic Orchestra — an afternoon of play, performance and new sound.", sourceUrl:"https://hackoustic.org/daylight-music-382/"}
+].reverse(); // newest first for display
+
+const NEWS_SEED = [
+  {title:"Tim Yates wins International Sound Awards 2019", date:"2019", body:"Loopfree, an accessible wireless looper built with musician DJArthro and Vahakn Matossian of Human Instruments, won the International Sound Awards 2019 and the KTH Innovation Music Tech Award at Music Tech Fest 2018.", link:""},
+  {title:"First ever hackathon at Abbey Road Studios", date:"Dec 2018", body:"Hackoustic helped organise the first hackathon ever held at the legendary Abbey Road Studios — an unforgettable night for the group.", link:"https://hackoustic.org/abbey-road-hackathon-december-2018/"},
+  {title:"13 installations take over Tate Modern's Switch House", date:"Oct 2016", body:"At the first ever Uniqlo Tate Late, Hackoustic took over the entire Switch House with 13 different installations.", link:"https://hackoustic.org/uniqlo-tate-late-28th-october-2016/"},
+  {title:"28,000 through Tate Modern's doors at Turbine Festival", date:"Jul 2015", body:"Turbine Festival 2015 drew an estimated 28,000 visitors through Tate Modern — 8,000 more than a usual Saturday — making it Hackoustic's biggest event to date at the time.", link:"https://hackoustic.org/turbine-festival-sat-25th-july-2015/"},
+  {title:"The Hackompilation released for Iklectik", date:"Mar 2020", body:"Hackoustic released The Hackompilation, a compilation album for Iklectik featuring Jack Jelfs, Phlegmm, Harky, Cutlasses, Kelly Snook, Jenn Kirby, Frazer Merrick, Helen Leigh, Dom Aversano and Noum.", link:"https://hackoustic.bandcamp.com/"},
+  {title:"DADAMachines' Automat Kickstarter hits 600% funding", date:"Apr 2017", body:"At Hackoustic's showcase with dadamachines founder Johannes Lohbihler, the Automat toolkit's Kickstarter campaign was already 600% funded.", link:"https://hackoustic.org/showcase-dada-machines-12th-april/"}
+];
+
+/* =========================================================================
+   STORAGE
+   ========================================================================= */
+const KEYS = { artists:"hackoustic-artists-v3", events:"hackoustic-events-v3", news:"hackoustic-news-v3" };
+let artists = [], events = [], news = [];
+
+function loadAll(){
+  artists = loadOrSeed(KEYS.artists, ARTISTS_SEED);
+  events  = loadOrSeed(KEYS.events, EVENTS_SEED);
+  news    = loadOrSeed(KEYS.news, NEWS_SEED);
+}
+function loadOrSeed(key, seed){
+  try{
+    const raw = localStorage.getItem(key);
+    if(raw) return JSON.parse(raw);
+  }catch(e){}
+  const withIds = seed.map((x,i)=>({...x, id:key+"-"+i}));
+  try{ localStorage.setItem(key, JSON.stringify(withIds)); }catch(e){}
+  return withIds;
+}
+function save(key, arr){ try{ localStorage.setItem(key, JSON.stringify(arr)); }catch(e){ alert("Could not save — your browser storage may be full. Try removing a large image or exporting a backup."); } }
+function saveArtists(){ save(KEYS.artists, artists); }
+function saveEvents(){ save(KEYS.events, events); }
+function saveNews(){ save(KEYS.news, news); }
+
+/* =========================================================================
+   ROUTER
+   ========================================================================= */
+const PUBLIC_TABS = ["home","artists","events","news","about"];
+const ADMIN_ROUTE = "backstage-hq"; // unlinked from nav — bookmark this hash to reach the admin page
+
+function currentHash(){ return (location.hash || "#home").slice(1); }
+
+function route(){
+  const hash = currentHash();
+  if(hash === ADMIN_ROUTE){
+    showAdminGate();
+    return;
   }
-  function saveData(){
-    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(artists)); }
-    catch(e){ console.warn("Could not save to localStorage:", e); }
+  const tab = PUBLIC_TABS.includes(hash) ? hash : "home";
+  document.querySelectorAll(".tab-panel").forEach(p=>p.classList.remove("active"));
+  document.getElementById("panel-"+tab).classList.add("active");
+  document.querySelectorAll(".tab-btn[data-tab]").forEach(b=>{
+    b.classList.toggle("active", b.dataset.tab === tab);
+  });
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange", route);
+
+/* =========================================================================
+   HOME
+   ========================================================================= */
+function renderHome(){
+  document.getElementById("home-stat-artists").textContent = artists.length;
+  document.getElementById("home-stat-events").textContent = events.length;
+  const venues = [...new Set(events.map(e=>e.venue).filter(Boolean))].slice(0,8);
+  const wrap = document.getElementById("home-venues");
+  wrap.innerHTML = "";
+  venues.forEach(v=>{
+    const chip = document.createElement("span");
+    chip.className = "venue-chip";
+    chip.textContent = v;
+    wrap.appendChild(chip);
+  });
+}
+
+/* =========================================================================
+   ARTISTS TAB
+   ========================================================================= */
+let activeArtistTag = "all";
+
+function artistTags(){
+  const s = new Set();
+  artists.forEach(a=> (a.tags||[]).forEach(t=>s.add(t)));
+  return [...s].sort();
+}
+function renderArtistTagbar(){
+  const bar = document.getElementById("artist-tagbar");
+  bar.innerHTML = "";
+  const mk = (label, val)=>{
+    const b = document.createElement("button");
+    b.className = "tag-pill" + (activeArtistTag===val ? " active":"");
+    b.textContent = label; b.type="button";
+    b.addEventListener("click", ()=>{ activeArtistTag = val; renderArtistGrid(); renderArtistTagbar(); });
+    return b;
+  };
+  bar.appendChild(mk("All","all"));
+  artistTags().forEach(t=>bar.appendChild(mk(t,t)));
+}
+function socketNo(i){ return "№ " + String(i+1).padStart(3,"0"); }
+
+function renderArtistGrid(){
+  const grid = document.getElementById("artist-grid");
+  const q = document.getElementById("artist-search").value.trim().toLowerCase();
+  const filtered = artists.filter(a=>{
+    const matchesTag = activeArtistTag==="all" || (a.tags||[]).includes(activeArtistTag);
+    const hay = (a.name+" "+a.bio+" "+(a.tags||[]).join(" ")).toLowerCase();
+    return matchesTag && (!q || hay.includes(q));
+  });
+  grid.innerHTML = "";
+  if(filtered.length===0){
+    grid.innerHTML = '<div class="empty">No signals found. Try clearing filters, or add this artist from the backend.</div>';
+    return;
   }
+  filtered.forEach(a=>{
+    const idx = artists.indexOf(a);
+    const card = document.createElement("article");
+    card.className = "card"; card.tabIndex = 0; card.setAttribute("role","button");
+    card.setAttribute("aria-label","View profile for "+a.name);
 
-  function allTags(){
-    const s = new Set();
-    artists.forEach(a=> (a.tags||[]).forEach(t=>s.add(t)));
-    return [...s].sort();
-  }
-
-  function renderTagbar(){
-    const bar = document.getElementById('tagbar');
-    bar.innerHTML = "";
-    const mk = (label, val)=>{
-      const b = document.createElement('button');
-      b.className = 'tag-pill' + (activeTag===val ? ' active':'');
-      b.textContent = label; b.type = 'button';
-      b.addEventListener('click', ()=>{ activeTag = val; render(); });
-      return b;
-    };
-    bar.appendChild(mk('All', 'all'));
-    allTags().forEach(t=> bar.appendChild(mk(t, t)));
-  }
-
-  function socketNo(i){ return "№ " + String(i+1).padStart(3,'0'); }
-
-  function renderGrid(){
-    const grid = document.getElementById('grid');
-    const q = document.getElementById('search').value.trim().toLowerCase();
-    const filtered = artists.filter(a=>{
-      const matchesTag = activeTag==='all' || (a.tags||[]).includes(activeTag);
-      const hay = (a.name+' '+a.bio+' '+(a.tags||[]).join(' ')).toLowerCase();
-      const matchesQ = !q || hay.includes(q);
-      return matchesTag && matchesQ;
-    });
-
-    grid.innerHTML = "";
-    document.getElementById('stat-count').textContent = artists.length;
-
-    if(filtered.length===0){
-      const empty = document.createElement('div');
-      empty.className = 'empty';
-      empty.textContent = "No signals found. Try clearing filters, or add this artist yourself below.";
-      grid.appendChild(empty);
-      return;
+    if(a.image){
+      const img = document.createElement("img");
+      img.className = "thumb"; img.src = a.image; img.alt = a.name;
+      card.appendChild(img);
+    }else{
+      const fb = document.createElement("div");
+      fb.className = "thumb-fallback";
+      fb.textContent = a.name.trim().charAt(0).toUpperCase();
+      card.appendChild(fb);
     }
 
-    filtered.forEach((a)=>{
-      const idxInAll = artists.indexOf(a);
-      const card = document.createElement('article');
-      card.className = 'card';
-      card.tabIndex = 0;
-      card.setAttribute('role','button');
-      card.setAttribute('aria-label', 'View profile for '+a.name);
+    const body = document.createElement("div");
+    body.className = "body";
 
-      const top = document.createElement('div');
-      top.className = 'top-row';
-      const socket = document.createElement('span');
-      socket.className = 'socket';
-      socket.textContent = socketNo(idxInAll);
-      const del = document.createElement('button');
-      del.className = 'del';
-      del.setAttribute('aria-label', 'Remove '+a.name);
-      del.innerHTML = '&times;';
-      del.addEventListener('click', (e)=>{
-        e.stopPropagation();
-        if(confirm('Remove "'+a.name+'" from the directory?')){
-          artists = artists.filter(x=>x.id!==a.id);
-          saveData(); render();
-        }
-      });
-      top.appendChild(socket); top.appendChild(del);
+    const top = document.createElement("div");
+    top.className = "top-row";
+    const socket = document.createElement("span");
+    socket.className = "socket"; socket.textContent = socketNo(idx);
+    top.appendChild(socket);
+    body.appendChild(top);
 
-      const h3 = document.createElement('h3');
-      h3.textContent = a.name;
+    const h3 = document.createElement("h3"); h3.textContent = a.name; body.appendChild(h3);
+    const bio = document.createElement("p"); bio.className = "bio"; bio.textContent = a.bio; body.appendChild(bio);
 
-      const bio = document.createElement('p');
-      bio.className = 'bio';
-      bio.textContent = a.bio;
-
-      const tagsWrap = document.createElement('div');
-      tagsWrap.className = 'tags';
-      (a.tags||[]).forEach(t=>{
-        const chip = document.createElement('span');
-        chip.className = 'chip'; chip.textContent = t;
-        tagsWrap.appendChild(chip);
-      });
-
-      const cta = document.createElement('span');
-      cta.className = 'cta';
-      cta.textContent = '→ view profile';
-
-      card.appendChild(top);
-      card.appendChild(h3);
-      card.appendChild(bio);
-      card.appendChild(tagsWrap);
-      card.appendChild(cta);
-
-      const openHandler = ()=> openModal(a, idxInAll);
-      card.addEventListener('click', openHandler);
-      card.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); openHandler(); } });
-
-      grid.appendChild(card);
-    });
-  }
-
-  function openModal(a, idx){
-    const body = document.getElementById('modal-body');
-    body.innerHTML = "";
-
-    const socket = document.createElement('div');
-    socket.className = 'socket';
-    socket.textContent = socketNo(idx);
-
-    const h2 = document.createElement('h2');
-    h2.textContent = a.name;
-
-    body.appendChild(socket);
-    body.appendChild(h2);
-
-    if(a.event){
-      const ev = document.createElement('div');
-      ev.className = 'event-line';
-      ev.textContent = a.event;
-      body.appendChild(ev);
-    }
-
-    const tagsWrap = document.createElement('div');
-    tagsWrap.className = 'tags';
-    (a.tags||[]).forEach(t=>{
-      const chip = document.createElement('span');
-      chip.className = 'chip'; chip.textContent = t;
-      tagsWrap.appendChild(chip);
-    });
+    const tagsWrap = document.createElement("div"); tagsWrap.className = "tags";
+    (a.tags||[]).forEach(t=>{ const c=document.createElement("span"); c.className="chip"; c.textContent=t; tagsWrap.appendChild(c); });
     body.appendChild(tagsWrap);
 
-    const bio = document.createElement('p');
-    bio.className = 'bio-full';
-    bio.textContent = a.bio;
-    body.appendChild(bio);
+    const cta = document.createElement("span"); cta.className = "cta"; cta.textContent = "→ view profile";
+    body.appendChild(cta);
 
-    const linksWrap = document.createElement('div');
-    linksWrap.className = 'links';
-    const links = a.links || (a.link ? [{label:'Website', url:a.link}] : []);
-    if(links.length){
-      links.forEach(l=>{
-        const link = document.createElement('a');
-        link.href = l.url; link.target = '_blank'; link.rel = 'noopener noreferrer';
-        link.textContent = '→ ' + l.label;
-        linksWrap.appendChild(link);
-      });
+    card.appendChild(body);
+
+    const open = ()=> openArtistModal(a, idx);
+    card.addEventListener("click", open);
+    card.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); open(); } });
+    grid.appendChild(card);
+  });
+}
+
+function openArtistModal(a, idx){
+  const modal = document.getElementById("modal");
+  const body = document.getElementById("modal-body");
+  const existingImg = modal.querySelector(".modal-img");
+  if(existingImg) existingImg.remove();
+  body.innerHTML = "";
+
+  if(a.image){
+    const img = document.createElement("img");
+    img.className = "modal-img"; img.src = a.image; img.alt = a.name;
+    modal.insertBefore(img, modal.firstChild.nextSibling);
+  }
+
+  const inner = document.createElement("div");
+  inner.className = "modal-inner";
+
+  const socket = document.createElement("div"); socket.className="socket"; socket.textContent = socketNo(idx);
+  const h2 = document.createElement("h2"); h2.textContent = a.name;
+  inner.appendChild(socket); inner.appendChild(h2);
+
+  if(a.event){ const ev=document.createElement("div"); ev.className="event-line"; ev.textContent=a.event; inner.appendChild(ev); }
+
+  const tagsWrap = document.createElement("div"); tagsWrap.className="tags";
+  (a.tags||[]).forEach(t=>{ const c=document.createElement("span"); c.className="chip"; c.textContent=t; tagsWrap.appendChild(c); });
+  inner.appendChild(tagsWrap);
+
+  const bio = document.createElement("p"); bio.className="bio-full"; bio.textContent=a.bio;
+  inner.appendChild(bio);
+
+  const linksWrap = document.createElement("div"); linksWrap.className="links";
+  const links = a.links || [];
+  if(links.length){
+    links.forEach(l=>{
+      const link = document.createElement("a");
+      link.href=l.url; link.target="_blank"; link.rel="noopener noreferrer";
+      link.textContent = "→ " + l.label;
+      linksWrap.appendChild(link);
+    });
+  }else{
+    const none = document.createElement("span"); none.className="no-link";
+    none.textContent = "No link on file yet — add one from the backend.";
+    linksWrap.appendChild(none);
+  }
+  inner.appendChild(linksWrap);
+  body.appendChild(inner);
+
+  document.getElementById("modal-backdrop").classList.add("open");
+  document.getElementById("modal-close").focus();
+}
+function closeModal(){ document.getElementById("modal-backdrop").classList.remove("open"); }
+document.getElementById("modal-close").addEventListener("click", closeModal);
+document.getElementById("modal-backdrop").addEventListener("click", e=>{ if(e.target.id==="modal-backdrop") closeModal(); });
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeModal(); });
+
+/* =========================================================================
+   EVENTS TAB
+   ========================================================================= */
+function renderEvents(){
+  const list = document.getElementById("event-list");
+  const q = document.getElementById("event-search").value.trim().toLowerCase();
+  const filtered = events.filter(e=>{
+    const hay = (e.title+" "+e.venue+" "+e.desc).toLowerCase();
+    return !q || hay.includes(q);
+  });
+  list.innerHTML = "";
+  if(filtered.length===0){
+    list.innerHTML = '<div class="empty">No events match that search.</div>';
+    return;
+  }
+  filtered.forEach(e=>{
+    const item = document.createElement("div");
+    item.className = "tl-item";
+    item.innerHTML = `
+      <div class="tl-date">${escapeHtml(e.date||"")}</div>
+      <div>
+        <div class="tl-title">${escapeHtml(e.title||"")}</div>
+        ${e.venue ? `<div class="tl-venue">${escapeHtml(e.venue)}</div>` : ""}
+        <p class="tl-desc">${escapeHtml(e.desc||"")}</p>
+        ${e.sourceUrl ? `<a class="tl-link" href="${escapeAttr(e.sourceUrl)}" target="_blank" rel="noopener noreferrer">→ source</a>` : ""}
+      </div>`;
+    list.appendChild(item);
+  });
+}
+function escapeHtml(str){ return String(str).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function escapeAttr(str){ return escapeHtml(str); }
+
+/* =========================================================================
+   NEWS TAB
+   ========================================================================= */
+function renderNews(){
+  const grid = document.getElementById("news-grid");
+  grid.innerHTML = "";
+  if(news.length===0){ grid.innerHTML = '<div class="empty">No news posted yet.</div>'; return; }
+  news.forEach(n=>{
+    const card = document.createElement("div");
+    card.className = "news-card";
+    card.innerHTML = `
+      <div class="tl-date">${escapeHtml(n.date||"")}</div>
+      <h3>${escapeHtml(n.title||"")}</h3>
+      <p>${escapeHtml(n.body||"")}</p>
+      ${n.link ? `<a class="tl-link" href="${escapeAttr(n.link)}" target="_blank" rel="noopener noreferrer">→ read more</a>` : ""}`;
+    grid.appendChild(card);
+  });
+}
+
+/* =========================================================================
+   NAV WIRING
+   ========================================================================= */
+document.querySelectorAll(".tab-btn[data-tab]").forEach(btn=>{
+  btn.addEventListener("click", ()=>{ /* let hashchange handle rendering */ });
+});
+document.getElementById("artist-search").addEventListener("input", renderArtistGrid);
+document.getElementById("event-search").addEventListener("input", renderEvents);
+
+/* =========================================================================
+   EXPORT / IMPORT (public footer — full backup of all three collections)
+   ========================================================================= */
+document.getElementById("export-btn").addEventListener("click", ()=>{
+  const payload = { artists, events, news, exportedAt: new Date().toISOString() };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = "hackoustic-site-backup.json"; a.click();
+  URL.revokeObjectURL(url);
+});
+document.getElementById("import-btn").addEventListener("click", ()=> document.getElementById("import-file").click());
+document.getElementById("import-file").addEventListener("change", e=>{
+  const file = e.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ev=>{
+    try{
+      const data = JSON.parse(ev.target.result);
+      if(data.artists) { artists = data.artists; saveArtists(); }
+      if(data.events)  { events  = data.events;  saveEvents(); }
+      if(data.news)    { news    = data.news;    saveNews(); }
+      renderArtistGrid(); renderArtistTagbar(); renderEvents(); renderNews(); renderHome();
+      alert("Backup imported.");
+    }catch(err){ alert("Could not read that file: " + err.message); }
+  };
+  reader.readAsText(file);
+  e.target.value = "";
+});
+
+/* =========================================================================
+   ADMIN (unlinked "secret" page)
+   ========================================================================= */
+const ADMIN_PASSPHRASE = "hackoustic-backstage"; // change this — see notes below
+let adminUnlocked = false;
+
+function showAdminGate(){
+  document.querySelectorAll(".tab-panel").forEach(p=>p.classList.remove("active"));
+  const panel = document.getElementById("panel-admin");
+  panel.classList.add("active");
+  document.querySelectorAll(".tab-btn[data-tab]").forEach(b=>b.classList.remove("active"));
+
+  if(sessionStorage.getItem("hackoustic-admin-ok") === "1"){
+    adminUnlocked = true;
+    renderAdmin();
+    return;
+  }
+  panel.innerHTML = `
+    <div class="admin-gate">
+      <p class="eyebrow">Backend</p>
+      <h2 style="font-size:22px;">Enter passphrase</h2>
+      <p>This page isn't linked anywhere on the site and only reachable by direct URL — but it isn't real security. Anyone who finds this link or reads the page source can get in. Don't put anything here you wouldn't want public.</p>
+      <input type="password" id="admin-pass-input" placeholder="Passphrase" autofocus>
+      <button class="primary" id="admin-pass-submit">Unlock</button>
+      <p id="admin-pass-error" style="color:var(--danger); font-family:var(--mono); font-size:12px; display:none;">Wrong passphrase.</p>
+    </div>`;
+  const submit = ()=>{
+    const val = document.getElementById("admin-pass-input").value;
+    if(val === ADMIN_PASSPHRASE){
+      sessionStorage.setItem("hackoustic-admin-ok","1");
+      adminUnlocked = true;
+      renderAdmin();
     }else{
-      const none = document.createElement('span');
-      none.className = 'no-link';
-      none.textContent = "No link on file yet — edit this artist to add one.";
-      linksWrap.appendChild(none);
+      document.getElementById("admin-pass-error").style.display = "block";
     }
-    body.appendChild(linksWrap);
+  };
+  document.getElementById("admin-pass-submit").addEventListener("click", submit);
+  document.getElementById("admin-pass-input").addEventListener("keydown", e=>{ if(e.key==="Enter") submit(); });
+}
 
-    document.getElementById('modal-backdrop').classList.add('open');
-    document.getElementById('modal-close').focus();
-  }
-
-  function closeModal(){
-    document.getElementById('modal-backdrop').classList.remove('open');
-  }
-  document.getElementById('modal-close').addEventListener('click', closeModal);
-  document.getElementById('modal-backdrop').addEventListener('click', (e)=>{
-    if(e.target.id === 'modal-backdrop') closeModal();
+function renderAdmin(){
+  const panel = document.getElementById("panel-admin");
+  panel.innerHTML = `
+    <div class="hero" style="padding-top:40px; padding-bottom:0; border-bottom:none;">
+      <p class="eyebrow">Backend</p>
+      <h1 style="font-size:28px;">Manage the site</h1>
+      <div class="admin-warning">This page is reachable by anyone with the URL — it's hidden, not password-protected in any real sense. Treat the passphrase as a light deterrent, not a lock.</div>
+    </div>
+    <div class="admin-tabs">
+      <button class="admin-tab-btn active" data-admin-tab="artists">Artists</button>
+      <button class="admin-tab-btn" data-admin-tab="events">Events</button>
+      <button class="admin-tab-btn" data-admin-tab="news">News</button>
+    </div>
+    <div class="admin-panel active" id="admin-panel-artists"></div>
+    <div class="admin-panel" id="admin-panel-events"></div>
+    <div class="admin-panel" id="admin-panel-news"></div>
+  `;
+  document.querySelectorAll(".admin-tab-btn").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      document.querySelectorAll(".admin-tab-btn").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      document.querySelectorAll(".admin-panel").forEach(p=>p.classList.remove("active"));
+      document.getElementById("admin-panel-"+btn.dataset.adminTab).classList.add("active");
+    });
   });
-  document.addEventListener('keydown', (e)=>{
-    if(e.key === 'Escape') closeModal();
-  });
+  renderAdminArtists();
+  renderAdminEvents();
+  renderAdminNews();
+}
 
-  function render(){
-    renderTagbar();
-    renderGrid();
-  }
-
-  document.getElementById('search').addEventListener('input', render);
-
-  document.getElementById('add-form').addEventListener('submit', (e)=>{
-    e.preventDefault();
-    const name = document.getElementById('f-name').value.trim();
-    const bio = document.getElementById('f-bio').value.trim();
-    const tagsRaw = document.getElementById('f-tags').value.trim();
-    const link = document.getElementById('f-link').value.trim();
-    const event = document.getElementById('f-event').value.trim();
-    if(!name || !bio) return;
-
-    const tags = tagsRaw ? tagsRaw.split(',').map(t=>t.trim().toLowerCase().replace(/\s+/g,'-')).filter(Boolean) : [];
-    const links = link ? [{label:'Website', url: link}] : [];
-
-    artists.push({ id: 'a-' + Date.now(), name, bio, tags, links, event });
-    saveData(); render();
-
-    e.target.reset();
-    const msg = document.getElementById('form-msg');
-    msg.textContent = "Added \"" + name + "\" to the directory.";
-    setTimeout(()=> msg.textContent = "", 3500);
-  });
-
-  document.getElementById('export-btn').addEventListener('click', ()=>{
-    const blob = new Blob([JSON.stringify(artists, null, 2)], {type:'application/json'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url; a.download = 'hackoustic-directory.json';
-    a.click();
-    URL.revokeObjectURL(url);
-  });
-
-  document.getElementById('import-btn').addEventListener('click', ()=>{
-    document.getElementById('import-file').click();
-  });
-  document.getElementById('import-file').addEventListener('change', (e)=>{
-    const file = e.target.files[0];
-    if(!file) return;
+/* ---- image helper: resize/compress an uploaded file to a data URL ---- */
+function fileToCompressedDataUrl(file, maxDim=640, quality=0.82){
+  return new Promise((resolve, reject)=>{
+    const img = new Image();
     const reader = new FileReader();
-    reader.onload = (ev)=>{
-      try{
-        const data = JSON.parse(ev.target.result);
-        if(Array.isArray(data)){
-          artists = data.map((a,i)=>({ id: a.id || ('i-'+Date.now()+'-'+i), ...a }));
-          saveData(); render();
-          alert('Imported ' + artists.length + ' artists.');
-        }else{
-          alert("That file doesn't look like a directory export.");
-        }
-      }catch(err){
-        alert('Could not read that file: ' + err.message);
-      }
+    reader.onload = ()=>{
+      img.onload = ()=>{
+        let {width, height} = img;
+        if(width > height && width > maxDim){ height = Math.round(height * maxDim/width); width = maxDim; }
+        else if(height > maxDim){ width = Math.round(width * maxDim/height); height = maxDim; }
+        const canvas = document.createElement("canvas");
+        canvas.width = width; canvas.height = height;
+        canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL("image/jpeg", quality));
+      };
+      img.onerror = reject;
+      img.src = reader.result;
     };
-    reader.readAsText(file);
-    e.target.value = '';
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
   });
+}
 
-  document.getElementById('reset-btn').addEventListener('click', ()=>{
-    if(confirm('Reset to the starter list? This replaces everything currently in the directory.')){
-      artists = SEED.map((a,i)=>({...a, id:"seed-"+i}));
-      saveData(); render();
+/* ---- Admin: Artists ---- */
+function renderAdminArtists(){
+  const el = document.getElementById("admin-panel-artists");
+  el.innerHTML = `
+    <h2 style="font-size:20px;">Add an artist</h2>
+    <form class="admin-form" id="artist-admin-form">
+      <div class="field"><label for="aa-name">Name *</label><input type="text" id="aa-name" required></div>
+      <div class="field"><label for="aa-tags">Tags</label><input type="text" id="aa-tags" placeholder="composer, electronics"><span class="hint">comma-separated</span></div>
+      <div class="field full"><label for="aa-bio">Bio *</label><textarea id="aa-bio" required></textarea></div>
+      <div class="field"><label for="aa-event">Where you worked with them</label><input type="text" id="aa-event"></div>
+      <div class="field"><label for="aa-link">Website / link label &amp; URL</label>
+        <div style="display:flex; gap:8px;">
+          <input type="text" id="aa-link-label" placeholder="Label (e.g. Website)" style="flex:1;">
+          <input type="url" id="aa-link-url" placeholder="https://…" style="flex:2;">
+        </div>
+        <span class="hint">You can add more links later by editing this artist's JSON via export/import.</span>
+      </div>
+      <div class="field full">
+        <label>Image</label>
+        <div class="image-input-row">
+          <input type="url" id="aa-image-url" placeholder="Paste an image URL…" style="flex:1;">
+          <span class="hint">or</span>
+          <input type="file" id="aa-image-file" accept="image/*">
+          <img class="image-preview" id="aa-image-preview" style="display:none;">
+        </div>
+      </div>
+      <div class="actions">
+        <button type="submit" class="primary">Add artist</button>
+        <span class="form-msg" id="aa-msg"></span>
+      </div>
+    </form>
+    <h2 style="font-size:20px;">Existing artists (${artists.length})</h2>
+    <div class="admin-list" id="admin-artist-list"></div>
+  `;
+
+  let pendingImage = "";
+  const preview = document.getElementById("aa-image-preview");
+  document.getElementById("aa-image-file").addEventListener("change", async (e)=>{
+    const file = e.target.files[0]; if(!file) return;
+    try{
+      pendingImage = await fileToCompressedDataUrl(file);
+      preview.src = pendingImage; preview.style.display = "block";
+      document.getElementById("aa-image-url").value = "";
+    }catch(err){ alert("Could not process that image."); }
+  });
+  document.getElementById("aa-image-url").addEventListener("input", (e)=>{
+    if(e.target.value.trim()){
+      pendingImage = "";
+      document.getElementById("aa-image-file").value = "";
+      preview.src = e.target.value.trim(); preview.style.display = "block";
     }
   });
 
-  loadData();
-  render();
+  document.getElementById("artist-admin-form").addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const name = document.getElementById("aa-name").value.trim();
+    const bio = document.getElementById("aa-bio").value.trim();
+    if(!name || !bio) return;
+    const tags = document.getElementById("aa-tags").value.trim()
+      .split(",").map(t=>t.trim().toLowerCase().replace(/\s+/g,"-")).filter(Boolean);
+    const event = document.getElementById("aa-event").value.trim();
+    const linkLabel = document.getElementById("aa-link-label").value.trim() || "Website";
+    const linkUrl = document.getElementById("aa-link-url").value.trim();
+    const urlField = document.getElementById("aa-image-url").value.trim();
+    const image = pendingImage || urlField || "";
+
+    artists.push({
+      id: "a-"+Date.now(), name, bio, tags, event, image,
+      links: linkUrl ? [{label:linkLabel, url:linkUrl}] : []
+    });
+    saveArtists();
+    document.getElementById("aa-msg").textContent = `Added "${name}".`;
+    renderAdminArtists();
+    renderArtistGrid(); renderArtistTagbar(); renderHome();
+  });
+
+  const list = document.getElementById("admin-artist-list");
+  list.innerHTML = "";
+  artists.forEach(a=>{
+    const row = document.createElement("div");
+    row.className = "admin-row";
+    row.innerHTML = `
+      <div class="info"><b>${escapeHtml(a.name)}</b><span>${escapeHtml((a.tags||[]).join(", "))}</span></div>
+      <div class="row-actions">
+        <button class="small" data-edit="${a.id}">Edit</button>
+        <button class="small-danger" data-del="${a.id}">Delete</button>
+      </div>`;
+    list.appendChild(row);
+  });
+  list.querySelectorAll("[data-del]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const id = btn.dataset.del;
+      const a = artists.find(x=>x.id===id);
+      if(confirm(`Delete "${a.name}"?`)){
+        artists = artists.filter(x=>x.id!==id);
+        saveArtists(); renderAdminArtists(); renderArtistGrid(); renderArtistTagbar(); renderHome();
+      }
+    });
+  });
+  list.querySelectorAll("[data-edit]").forEach(btn=>{
+    btn.addEventListener("click", ()=> openArtistEditor(btn.dataset.edit));
+  });
+}
+
+function openArtistEditor(id){
+  const a = artists.find(x=>x.id===id);
+  if(!a) return;
+  const el = document.getElementById("admin-panel-artists");
+  const editWrap = document.createElement("div");
+  editWrap.style.marginTop = "20px";
+  editWrap.innerHTML = `
+    <h2 style="font-size:20px;">Editing ${escapeHtml(a.name)}</h2>
+    <form class="admin-form" id="artist-edit-form">
+      <div class="field"><label>Name *</label><input type="text" id="ae-name" value="${escapeAttr(a.name)}" required></div>
+      <div class="field"><label>Tags</label><input type="text" id="ae-tags" value="${escapeAttr((a.tags||[]).join(", "))}"></div>
+      <div class="field full"><label>Bio *</label><textarea id="ae-bio" required>${escapeHtml(a.bio||"")}</textarea></div>
+      <div class="field"><label>Where you worked with them</label><input type="text" id="ae-event" value="${escapeAttr(a.event||"")}"></div>
+      <div class="field full">
+        <label>Image</label>
+        <div class="image-input-row">
+          <input type="url" id="ae-image-url" placeholder="Paste an image URL…" style="flex:1;" value="${a.image && !a.image.startsWith('data:') ? escapeAttr(a.image) : ''}">
+          <span class="hint">or</span>
+          <input type="file" id="ae-image-file" accept="image/*">
+          <img class="image-preview" id="ae-image-preview" style="${a.image? '':'display:none;'}" src="${a.image?escapeAttr(a.image):''}">
+        </div>
+      </div>
+      <div class="actions">
+        <button type="submit" class="primary">Save changes</button>
+        <button type="button" class="small" id="ae-cancel">Cancel</button>
+      </div>
+    </form>`;
+  el.appendChild(editWrap);
+  editWrap.scrollIntoView({behavior:"smooth"});
+
+  let pendingImage = a.image && a.image.startsWith("data:") ? a.image : "";
+  const preview = document.getElementById("ae-image-preview");
+  document.getElementById("ae-image-file").addEventListener("change", async (e)=>{
+    const file = e.target.files[0]; if(!file) return;
+    pendingImage = await fileToCompressedDataUrl(file);
+    preview.src = pendingImage; preview.style.display = "block";
+    document.getElementById("ae-image-url").value = "";
+  });
+  document.getElementById("ae-image-url").addEventListener("input", (e)=>{
+    if(e.target.value.trim()){ pendingImage = ""; preview.src = e.target.value.trim(); preview.style.display = "block"; }
+  });
+  document.getElementById("ae-cancel").addEventListener("click", ()=> editWrap.remove());
+
+  document.getElementById("artist-edit-form").addEventListener("submit", (e)=>{
+    e.preventDefault();
+    a.name = document.getElementById("ae-name").value.trim();
+    a.bio = document.getElementById("ae-bio").value.trim();
+    a.tags = document.getElementById("ae-tags").value.trim().split(",").map(t=>t.trim().toLowerCase().replace(/\s+/g,"-")).filter(Boolean);
+    a.event = document.getElementById("ae-event").value.trim();
+    const urlField = document.getElementById("ae-image-url").value.trim();
+    a.image = pendingImage || urlField || a.image || "";
+    saveArtists();
+    renderAdminArtists(); renderArtistGrid(); renderArtistTagbar(); renderHome();
+  });
+}
+
+/* ---- Admin: Events ---- */
+function renderAdminEvents(){
+  const el = document.getElementById("admin-panel-events");
+  el.innerHTML = `
+    <h2 style="font-size:20px;">Add an event</h2>
+    <form class="admin-form" id="event-admin-form">
+      <div class="field"><label for="ea-title">Title *</label><input type="text" id="ea-title" required></div>
+      <div class="field"><label for="ea-date">Date *</label><input type="text" id="ea-date" placeholder="e.g. 14 Sept 2026" required></div>
+      <div class="field"><label for="ea-venue">Venue</label><input type="text" id="ea-venue" placeholder="e.g. Iklectik Art Lab"></div>
+      <div class="field"><label for="ea-link">Ticket / source link</label><input type="url" id="ea-link" placeholder="https://…"></div>
+      <div class="field full"><label for="ea-desc">Description</label><textarea id="ea-desc"></textarea></div>
+      <div class="actions"><button type="submit" class="primary">Add event</button><span class="form-msg" id="ea-msg"></span></div>
+    </form>
+    <h2 style="font-size:20px;">Existing events (${events.length})</h2>
+    <div class="admin-list" id="admin-event-list"></div>
+  `;
+  document.getElementById("event-admin-form").addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const title = document.getElementById("ea-title").value.trim();
+    const date = document.getElementById("ea-date").value.trim();
+    if(!title || !date) return;
+    events.unshift({
+      id: "e-"+Date.now(), title, date,
+      venue: document.getElementById("ea-venue").value.trim(),
+      sourceUrl: document.getElementById("ea-link").value.trim(),
+      desc: document.getElementById("ea-desc").value.trim()
+    });
+    saveEvents();
+    document.getElementById("ea-msg").textContent = `Added "${title}".`;
+    renderAdminEvents(); renderEvents(); renderHome();
+  });
+  const list = document.getElementById("admin-event-list");
+  list.innerHTML = "";
+  events.forEach(ev=>{
+    const row = document.createElement("div");
+    row.className = "admin-row";
+    row.innerHTML = `
+      <div class="info"><b>${escapeHtml(ev.title)}</b><span>${escapeHtml(ev.date)} · ${escapeHtml(ev.venue||"")}</span></div>
+      <div class="row-actions"><button class="small-danger" data-del="${ev.id}">Delete</button></div>`;
+    list.appendChild(row);
+  });
+  list.querySelectorAll("[data-del]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      if(confirm("Delete this event?")){
+        events = events.filter(x=>x.id!==btn.dataset.del);
+        saveEvents(); renderAdminEvents(); renderEvents(); renderHome();
+      }
+    });
+  });
+}
+
+/* ---- Admin: News ---- */
+function renderAdminNews(){
+  const el = document.getElementById("admin-panel-news");
+  el.innerHTML = `
+    <h2 style="font-size:20px;">Add a news post</h2>
+    <form class="admin-form" id="news-admin-form">
+      <div class="field"><label for="na-title">Title *</label><input type="text" id="na-title" required></div>
+      <div class="field"><label for="na-date">Date *</label><input type="text" id="na-date" placeholder="e.g. Sept 2026" required></div>
+      <div class="field full"><label for="na-body">Body *</label><textarea id="na-body" required></textarea></div>
+      <div class="field full"><label for="na-link">Link (optional)</label><input type="url" id="na-link" placeholder="https://…"></div>
+      <div class="actions"><button type="submit" class="primary">Add post</button><span class="form-msg" id="na-msg"></span></div>
+    </form>
+    <h2 style="font-size:20px;">Existing posts (${news.length})</h2>
+    <div class="admin-list" id="admin-news-list"></div>
+  `;
+  document.getElementById("news-admin-form").addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const title = document.getElementById("na-title").value.trim();
+    const body = document.getElementById("na-body").value.trim();
+    const date = document.getElementById("na-date").value.trim();
+    if(!title || !body || !date) return;
+    news.unshift({ id:"n-"+Date.now(), title, date, body, link: document.getElementById("na-link").value.trim() });
+    saveNews();
+    document.getElementById("na-msg").textContent = `Added "${title}".`;
+    renderAdminNews(); renderNews();
+  });
+  const list = document.getElementById("admin-news-list");
+  list.innerHTML = "";
+  news.forEach(n=>{
+    const row = document.createElement("div");
+    row.className = "admin-row";
+    row.innerHTML = `
+      <div class="info"><b>${escapeHtml(n.title)}</b><span>${escapeHtml(n.date)}</span></div>
+      <div class="row-actions"><button class="small-danger" data-del="${n.id}">Delete</button></div>`;
+    list.appendChild(row);
+  });
+  list.querySelectorAll("[data-del]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      if(confirm("Delete this post?")){
+        news = news.filter(x=>x.id!==btn.dataset.del);
+        saveNews(); renderAdminNews(); renderNews();
+      }
+    });
+  });
+}
+
+/* =========================================================================
+   INIT
+   ========================================================================= */
+loadAll();
+renderHome();
+renderArtistTagbar();
+renderArtistGrid();
+renderEvents();
+renderNews();
+route();
 </script>
 </body>
 </html>
