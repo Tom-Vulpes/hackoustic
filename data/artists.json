@@ -766,52 +766,6 @@
     ]
   },
   {
-    "id": "a-48",
-    "name": "Tasos Stamou",
-    "tags": [
-      "instrument-builder",
-      "sound-artist"
-    ],
-    "event": "Gamelan, Pringles and Toys, Nov 2015",
-    "image": "",
-    "bio": "Sound artist and instrument builder who showed work at Hackoustic's early London Hackspace sessions.",
-    "links": []
-  },
-  {
-    "id": "a-49",
-    "name": "Optonoise (Stan Lewry)",
-    "tags": [
-      "instrument-builder",
-      "electronics"
-    ],
-    "event": "Laser Synthesis, Jul 2016 / Optomodule, Feb 2016",
-    "image": "",
-    "bio": "Builders of the Epsilonograph and Optomodule — experimental laser-beam instruments for generating sound and visuals, shown at Music Tech Fest Berlin and the new Tate Modern wing opening.",
-    "links": [
-      {
-        "label": "SoundCloud",
-        "url": "https://soundcloud.com/opto-noise"
-      }
-    ]
-  },
-  {
-    "id": "a-50",
-    "name": "Blanca Regina & Matthias Kispert",
-    "tags": [
-      "sound-artist",
-      "educator"
-    ],
-    "event": "Material Studies, Jan 2016",
-    "image": "",
-    "bio": "Ran the Material Studies workshop exploring the spontaneous sound within matter.",
-    "links": [
-      {
-        "label": "Website",
-        "url": "http://www.whiteemotion.com/"
-      }
-    ]
-  },
-  {
     "id": "a-51",
     "name": "Craig Scott's Lobotomy",
     "tags": [
