@@ -22,93 +22,135 @@
   },
   {
     "id": "r-3",
+    "title": "CLIP Sound and Music",
+    "url": "https://www.clipsoundandmusic.uk/",
+    "category": "Communities & courses",
+    "desc": "Colchester-based social enterprise, founded by sound artist Frazer Merrick and Simon Keep, running accessible music-tech workshops for young people across Essex and East Anglia. Hackoustic has worked with them before."
+  },
+  {
+    "id": "r-4",
+    "title": "UK Hackspace Foundation",
+    "url": "https://www.hackspace.org.uk/",
+    "category": "Communities & courses",
+    "desc": "A directory and map of hackspaces and makerspaces across the UK — a good starting point for finding (or starting) a space outside London."
+  },
+  {
+    "id": "r-5",
+    "title": "South London Makerspace",
+    "url": "https://southlondonmakerspace.org/",
+    "category": "Communities & courses",
+    "desc": "Member-run community workshop in Herne Hill with electronics benches, laser cutting, textiles, wood and metal shops, and a weekly electronics meet-up."
+  },
+  {
+    "id": "r-6",
     "title": "Bela",
     "url": "https://bela.io/",
     "category": "Instrument building & kits",
     "desc": "Open-source embedded platform for ultra-low-latency interactive audio, built by the Augmented Instruments Laboratory at Queen Mary University of London — a favourite for building responsive digital instruments."
   },
   {
-    "id": "r-4",
+    "id": "r-7",
     "title": "Spoke",
     "url": "https://www.spokeboard.com/",
     "category": "Instrument building & kits",
     "desc": "Turns any conductive object or material into a touch-based MIDI, keyboard or serial controller — a fast way to build instruments, soundboards and interactive installations with no extra software."
   },
   {
-    "id": "r-5",
+    "id": "r-8",
     "title": "Look Mum No Computer",
     "url": "https://www.lookmumnocomputer.com/",
     "category": "Instrument building & kits",
     "desc": "Sam Battle's site and YouTube channel documenting the build of wild analogue synths and instruments — Furby organs, synth bikes and more, most with full build videos."
   },
   {
-    "id": "r-6",
+    "id": "r-9",
     "title": "dadamachines",
     "url": "http://dadamachines.com/en/",
     "category": "Instrument building & kits",
     "desc": "Berlin-based studio making modular hardware kits, like the Automat toolkit, that turn everyday objects into playable instruments."
   },
   {
-    "id": "r-7",
+    "id": "r-10",
     "title": "Drake Music",
     "url": "https://www.drakemusic.org/",
     "category": "Accessibility & inclusive design",
     "desc": "UK charity working where music, disability and technology meet — accessible instrument design, DMLab seed-funding grants, and a growing national collection of accessible instruments."
   },
   {
-    "id": "r-8",
+    "id": "r-11",
     "title": "Pure Data (Pd)",
     "url": "https://puredata.info/",
     "category": "Software & tools",
     "desc": "Free, open-source visual programming language for audio, video and sensor processing — a common building block for custom instruments and installations."
   },
   {
-    "id": "r-9",
+    "id": "r-12",
     "title": "SuperCollider",
     "url": "https://supercollider.github.io/",
     "category": "Software & tools",
     "desc": "Open-source platform for audio synthesis and algorithmic composition, widely used in live coding and generative sound art."
   },
   {
-    "id": "r-10",
+    "id": "r-13",
     "title": "Adafruit Learning System",
     "url": "https://learn.adafruit.com/",
     "category": "Tutorials & learning",
     "desc": "A huge library of free, step-by-step electronics tutorials — from a first solder joint to complex sensor and microcontroller projects."
   },
   {
-    "id": "r-11",
+    "id": "r-14",
     "title": "SparkFun Learn",
     "url": "https://learn.sparkfun.com/",
     "category": "Tutorials & learning",
     "desc": "Clear guides on electronics fundamentals, plus a well-stocked parts catalogue for anyone building their own hardware."
   },
   {
-    "id": "r-12",
+    "id": "r-15",
     "title": "Instructables",
     "url": "https://www.instructables.com/",
     "category": "Tutorials & learning",
     "desc": "Community-submitted, step-by-step project guides spanning electronics, music and craft — good for searching a specific build technique."
   },
   {
-    "id": "r-13",
+    "id": "r-16",
     "title": "Freesound",
     "url": "https://freesound.org/",
     "category": "Tutorials & learning",
     "desc": "A huge library of user-submitted sound recordings under Creative Commons licences — useful for sampling and sound design."
   },
   {
-    "id": "r-14",
+    "id": "r-17",
+    "title": "Notes and Volts",
+    "url": "https://www.notesandvolts.com/",
+    "category": "Tutorials & learning",
+    "desc": "Dave's long-running blog and YouTube channel of DIY synth and Arduino-based MIDI projects, with full build guides, code and schematics for each one."
+  },
+  {
+    "id": "r-18",
+    "title": "Moritz Klein",
+    "url": "https://www.youtube.com/@MoritzKlein0",
+    "category": "Tutorials & learning",
+    "desc": "In-depth, beginner-friendly YouTube series building analogue synth circuits from scratch — VCOs, filters, wavefolders and more, explained intuitively with minimal maths."
+  },
+  {
+    "id": "r-19",
     "title": "Sound on Sound",
     "url": "https://www.soundonsound.com/",
     "category": "Reading",
     "desc": "Long-running UK magazine covering music technology, recording and sound design in depth."
   },
   {
-    "id": "r-15",
+    "id": "r-20",
     "title": "CDM (Create Digital Music)",
     "url": "https://cdm.link/",
     "category": "Reading",
     "desc": "News, tutorials and community coverage of music technology, software and hardware, with a strong focus on experimental and DIY practice."
+  },
+  {
+    "id": "r-21",
+    "title": "Handmade Electronic Music",
+    "url": "https://www.routledge.com/Handmade-Electronic-Music-The-Art-of-Hardware-Hacking/Collins/p/book/9780367210106",
+    "category": "Reading",
+    "desc": "Nicolas Collins's widely-recommended book on circuit bending and hardware hacking — a hands-on introduction to building noise-making circuits with little to no electronics background needed."
   }
 ]
