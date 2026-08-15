@@ -1,0 +1,114 @@
+[
+  {
+    "id": "r-0",
+    "title": "Music Hackspace",
+    "url": "https://musichackspace.org/",
+    "category": "Communities & courses",
+    "desc": "Creative coding, music technology and community since 2011 — courses, hackathons and tutorials in Max/MSP, TouchDesigner, Ableton and more, run out of London."
+  },
+  {
+    "id": "r-1",
+    "title": "Acid Solder Club",
+    "url": "https://acidsolderclub.com/",
+    "category": "Communities & courses",
+    "desc": "DIY electronics and synth-building workspace in Utrecht, NL — bring-your-own-electronics soldering sessions, hackathons and skill-shares for all levels."
+  },
+  {
+    "id": "r-2",
+    "title": "London Hackspace",
+    "url": "https://london.hackspace.org.uk/",
+    "category": "Communities & courses",
+    "desc": "The East London makerspace Hackoustic calls home — open access to tools, electronics and a community of hackers of every kind."
+  },
+  {
+    "id": "r-3",
+    "title": "Bela",
+    "url": "https://bela.io/",
+    "category": "Instrument building & kits",
+    "desc": "Open-source embedded platform for ultra-low-latency interactive audio, built by the Augmented Instruments Laboratory at Queen Mary University of London — a favourite for building responsive digital instruments."
+  },
+  {
+    "id": "r-4",
+    "title": "Spoke",
+    "url": "https://www.spokeboard.com/",
+    "category": "Instrument building & kits",
+    "desc": "Turns any conductive object or material into a touch-based MIDI, keyboard or serial controller — a fast way to build instruments, soundboards and interactive installations with no extra software."
+  },
+  {
+    "id": "r-5",
+    "title": "Look Mum No Computer",
+    "url": "https://www.lookmumnocomputer.com/",
+    "category": "Instrument building & kits",
+    "desc": "Sam Battle's site and YouTube channel documenting the build of wild analogue synths and instruments — Furby organs, synth bikes and more, most with full build videos."
+  },
+  {
+    "id": "r-6",
+    "title": "dadamachines",
+    "url": "http://dadamachines.com/en/",
+    "category": "Instrument building & kits",
+    "desc": "Berlin-based studio making modular hardware kits, like the Automat toolkit, that turn everyday objects into playable instruments."
+  },
+  {
+    "id": "r-7",
+    "title": "Drake Music",
+    "url": "https://www.drakemusic.org/",
+    "category": "Accessibility & inclusive design",
+    "desc": "UK charity working where music, disability and technology meet — accessible instrument design, DMLab seed-funding grants, and a growing national collection of accessible instruments."
+  },
+  {
+    "id": "r-8",
+    "title": "Pure Data (Pd)",
+    "url": "https://puredata.info/",
+    "category": "Software & tools",
+    "desc": "Free, open-source visual programming language for audio, video and sensor processing — a common building block for custom instruments and installations."
+  },
+  {
+    "id": "r-9",
+    "title": "SuperCollider",
+    "url": "https://supercollider.github.io/",
+    "category": "Software & tools",
+    "desc": "Open-source platform for audio synthesis and algorithmic composition, widely used in live coding and generative sound art."
+  },
+  {
+    "id": "r-10",
+    "title": "Adafruit Learning System",
+    "url": "https://learn.adafruit.com/",
+    "category": "Tutorials & learning",
+    "desc": "A huge library of free, step-by-step electronics tutorials — from a first solder joint to complex sensor and microcontroller projects."
+  },
+  {
+    "id": "r-11",
+    "title": "SparkFun Learn",
+    "url": "https://learn.sparkfun.com/",
+    "category": "Tutorials & learning",
+    "desc": "Clear guides on electronics fundamentals, plus a well-stocked parts catalogue for anyone building their own hardware."
+  },
+  {
+    "id": "r-12",
+    "title": "Instructables",
+    "url": "https://www.instructables.com/",
+    "category": "Tutorials & learning",
+    "desc": "Community-submitted, step-by-step project guides spanning electronics, music and craft — good for searching a specific build technique."
+  },
+  {
+    "id": "r-13",
+    "title": "Freesound",
+    "url": "https://freesound.org/",
+    "category": "Tutorials & learning",
+    "desc": "A huge library of user-submitted sound recordings under Creative Commons licences — useful for sampling and sound design."
+  },
+  {
+    "id": "r-14",
+    "title": "Sound on Sound",
+    "url": "https://www.soundonsound.com/",
+    "category": "Reading",
+    "desc": "Long-running UK magazine covering music technology, recording and sound design in depth."
+  },
+  {
+    "id": "r-15",
+    "title": "CDM (Create Digital Music)",
+    "url": "https://cdm.link/",
+    "category": "Reading",
+    "desc": "News, tutorials and community coverage of music technology, software and hardware, with a strong focus on experimental and DIY practice."
+  }
+]
