@@ -55,7 +55,7 @@
   .stat span{font-family:var(--mono); font-size:11px; color:var(--grey); text-transform:uppercase; letter-spacing:.06em;}
 
   .home-section{padding:44px 0; border-bottom:1px solid var(--line);}
-  .home-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:20px;}
+  .home-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:20px;}
   .home-card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:20px;}
   .home-card h3{font-family:var(--head); font-size:17px; margin:0 0 6px;}
   .home-card p{font-size:13.5px; color:var(--grey); margin:0 0 12px;}
@@ -118,6 +118,17 @@
   @media(max-width:600px){ .tl-item{grid-template-columns:1fr;} }
 
   .news-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px;}
+  .res-category{margin-bottom:36px;}
+  .res-category h2{font-size:19px; margin:0 0 4px;}
+  .res-category .cat-desc{color:var(--grey); font-size:13.5px; margin:0 0 16px;}
+  .res-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .res-card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:18px 20px; text-decoration:none; color:var(--ink); display:block; transition:border-color .15s, transform .15s;}
+  .res-card:hover{border-color:var(--accent); transform:translateY(-2px);}
+  .res-card .res-title{font-family:var(--head); font-weight:700; font-size:15.5px; margin:0 0 6px; display:flex; align-items:center; justify-content:space-between; gap:8px;}
+  .res-card .res-title span.arrow{color:var(--accent); font-family:var(--mono); font-size:13px;}
+  .res-card .res-desc{font-size:13px; color:var(--grey); margin:0;}
+  .res-card .res-domain{font-family:var(--mono); font-size:10.5px; color:var(--muted2); text-transform:uppercase; letter-spacing:.05em; margin-top:8px; display:block;}
+  @media(max-width:640px){ .res-grid{grid-template-columns:1fr;} }
   .news-card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:22px;}
   .news-card .tl-date{margin-bottom:8px;}
   .news-card h3{font-family:var(--head); font-size:18px; margin:0 0 8px;}
@@ -187,6 +198,7 @@
   .admin-row .info span{display:block; font-family:var(--mono); font-size:11px; color:var(--muted2); margin-top:2px;}
   .admin-row .row-actions{display:flex; gap:8px; flex-shrink:0;}
 
+  @media (max-width:860px){ .home-grid{grid-template-columns:repeat(2,1fr);} }
   @media (max-width:640px){
     .header-top{display:none;}
     .home-grid{grid-template-columns:1fr;}
@@ -210,6 +222,7 @@
       <a class="tab-btn" data-tab="artists" href="#artists">Artists</a>
       <a class="tab-btn" data-tab="events" href="#events">Events</a>
       <a class="tab-btn" data-tab="news" href="#news">News</a>
+      <a class="tab-btn" data-tab="resources" href="#resources">Resources</a>
       <a class="tab-btn" data-tab="about" href="#about">About</a>
     </nav>
   </div>
@@ -249,6 +262,11 @@
           <h3>News</h3>
           <p>Milestones, awards and highlights from over a decade of hacked sound.</p>
           <a class="tab-btn cta-link" data-tab="news" href="#news" style="padding:0; color:var(--accent);">→ Read the news</a>
+        </div>
+        <div class="home-card">
+          <h3>Resources</h3>
+          <p>Communities, kits, software and reading for learning sound art and instrument building.</p>
+          <a class="tab-btn cta-link" data-tab="resources" href="#resources" style="padding:0; color:var(--accent);">→ Start exploring</a>
         </div>
       </div>
     </div>
@@ -297,6 +315,16 @@
       <p class="sub">Awards, press mentions and moments worth remembering from over a decade of Hackoustic.</p>
     </div>
     <section class="directory"><div class="news-grid" id="news-grid"></div></section>
+  </section>
+
+  <!-- RESOURCES -->
+  <section class="tab-panel" id="panel-resources">
+    <div class="hero" style="padding-top:40px;">
+      <p class="eyebrow">Keep learning</p>
+      <h1 style="font-size:clamp(28px,4vw,38px);">Resources</h1>
+      <p class="sub">Places to learn about sound art, instrument building and interactive artworks — communities, kits, software and reading, picked by Hackoustic.</p>
+    </div>
+    <section class="directory"><div id="resources-list"></div></section>
   </section>
 
   <!-- ABOUT -->
@@ -527,6 +555,41 @@ const NEWS_SEED = [
   {title:"DADAMachines' Automat Kickstarter hits 600% funding", date:"Apr 2017", body:"At Hackoustic's showcase with dadamachines founder Johannes Lohbihler, the Automat toolkit's Kickstarter campaign was already 600% funded.", link:"https://hackoustic.org/showcase-dada-machines-12th-april/"}
 ];
 
+const RESOURCES_SEED = [
+  {title:"Music Hackspace", url:"https://musichackspace.org/", category:"Communities & courses",
+    desc:"Creative coding, music technology and community since 2011 — courses, hackathons and tutorials in Max/MSP, TouchDesigner, Ableton and more, run out of London."},
+  {title:"Acid Solder Club", url:"https://acidsolderclub.com/", category:"Communities & courses",
+    desc:"DIY electronics and synth-building workspace in Utrecht, NL — bring-your-own-electronics soldering sessions, hackathons and skill-shares for all levels."},
+  {title:"London Hackspace", url:"https://london.hackspace.org.uk/", category:"Communities & courses",
+    desc:"The East London makerspace Hackoustic calls home — open access to tools, electronics and a community of hackers of every kind."},
+  {title:"Bela", url:"https://bela.io/", category:"Instrument building & kits",
+    desc:"Open-source embedded platform for ultra-low-latency interactive audio, built by the Augmented Instruments Laboratory at Queen Mary University of London — a favourite for building responsive digital instruments."},
+  {title:"Spoke", url:"https://www.spokeboard.com/", category:"Instrument building & kits",
+    desc:"Turns any conductive object or material into a touch-based MIDI, keyboard or serial controller — a fast way to build instruments, soundboards and interactive installations with no extra software."},
+  {title:"Look Mum No Computer", url:"https://www.lookmumnocomputer.com/", category:"Instrument building & kits",
+    desc:"Sam Battle's site and YouTube channel documenting the build of wild analogue synths and instruments — Furby organs, synth bikes and more, most with full build videos."},
+  {title:"dadamachines", url:"http://dadamachines.com/en/", category:"Instrument building & kits",
+    desc:"Berlin-based studio making modular hardware kits, like the Automat toolkit, that turn everyday objects into playable instruments."},
+  {title:"Drake Music", url:"https://www.drakemusic.org/", category:"Accessibility & inclusive design",
+    desc:"UK charity working where music, disability and technology meet — accessible instrument design, DMLab seed-funding grants, and a growing national collection of accessible instruments."},
+  {title:"Pure Data (Pd)", url:"https://puredata.info/", category:"Software & tools",
+    desc:"Free, open-source visual programming language for audio, video and sensor processing — a common building block for custom instruments and installations."},
+  {title:"SuperCollider", url:"https://supercollider.github.io/", category:"Software & tools",
+    desc:"Open-source platform for audio synthesis and algorithmic composition, widely used in live coding and generative sound art."},
+  {title:"Adafruit Learning System", url:"https://learn.adafruit.com/", category:"Tutorials & learning",
+    desc:"A huge library of free, step-by-step electronics tutorials — from a first solder joint to complex sensor and microcontroller projects."},
+  {title:"SparkFun Learn", url:"https://learn.sparkfun.com/", category:"Tutorials & learning",
+    desc:"Clear guides on electronics fundamentals, plus a well-stocked parts catalogue for anyone building their own hardware."},
+  {title:"Instructables", url:"https://www.instructables.com/", category:"Tutorials & learning",
+    desc:"Community-submitted, step-by-step project guides spanning electronics, music and craft — good for searching a specific build technique."},
+  {title:"Freesound", url:"https://freesound.org/", category:"Tutorials & learning",
+    desc:"A huge library of user-submitted sound recordings under Creative Commons licences — useful for sampling and sound design."},
+  {title:"Sound on Sound", url:"https://www.soundonsound.com/", category:"Reading",
+    desc:"Long-running UK magazine covering music technology, recording and sound design in depth."},
+  {title:"CDM (Create Digital Music)", url:"https://cdm.link/", category:"Reading",
+    desc:"News, tutorials and community coverage of music technology, software and hardware, with a strong focus on experimental and DIY practice."}
+];
+
 /* =========================================================================
    STORAGE
    ---------------------------------------------------------------------
@@ -543,15 +606,16 @@ const NEWS_SEED = [
    see — for that you need to publish the JSON file to the repo. See the
    admin page for a one-click download of the updated file to commit.
    ========================================================================= */
-const KEYS = { artists:"hackoustic-artists-v3", events:"hackoustic-events-v3", news:"hackoustic-news-v3" };
-const DATA_PATHS = { artists:"data/artists.json", events:"data/events.json", news:"data/news.json" };
-let artists = [], events = [], news = [];
-let publishedFetchOk = { artists:false, events:false, news:false };
+const KEYS = { artists:"hackoustic-artists-v3", events:"hackoustic-events-v3", news:"hackoustic-news-v3", resources:"hackoustic-resources-v3" };
+const DATA_PATHS = { artists:"data/artists.json", events:"data/events.json", news:"data/news.json", resources:"data/resources.json" };
+let artists = [], events = [], news = [], resources = [];
+let publishedFetchOk = { artists:false, events:false, news:false, resources:false };
 
 async function loadAll(){
-  artists = await loadCollection("artists", KEYS.artists, ARTISTS_SEED);
-  events  = await loadCollection("events", KEYS.events, EVENTS_SEED);
-  news    = await loadCollection("news", KEYS.news, NEWS_SEED);
+  artists   = await loadCollection("artists", KEYS.artists, ARTISTS_SEED);
+  events    = await loadCollection("events", KEYS.events, EVENTS_SEED);
+  news      = await loadCollection("news", KEYS.news, NEWS_SEED);
+  resources = await loadCollection("resources", KEYS.resources, RESOURCES_SEED);
 }
 
 async function loadCollection(name, key, seed){
@@ -582,6 +646,7 @@ function save(key, arr){ try{ localStorage.setItem(key, JSON.stringify(arr)); }c
 function saveArtists(){ save(KEYS.artists, artists); }
 function saveEvents(){ save(KEYS.events, events); }
 function saveNews(){ save(KEYS.news, news); }
+function saveResources(){ save(KEYS.resources, resources); }
 
 function downloadJson(filename, data){
   const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
@@ -594,7 +659,7 @@ function downloadJson(filename, data){
 /* =========================================================================
    ROUTER
    ========================================================================= */
-const PUBLIC_TABS = ["home","artists","events","news","about"];
+const PUBLIC_TABS = ["home","artists","events","news","resources","about"];
 const ADMIN_ROUTE = "backstage-hq"; // unlinked from nav — bookmark this hash to reach the admin page
 
 function currentHash(){ return (location.hash || "#home").slice(1); }
@@ -843,6 +908,49 @@ function renderNews(){
 }
 
 /* =========================================================================
+   RESOURCES TAB
+   ========================================================================= */
+function domainOf(url){
+  try{ return new URL(url).hostname.replace(/^www\./,""); }catch(e){ return url; }
+}
+function renderResources(){
+  const wrap = document.getElementById("resources-list");
+  wrap.innerHTML = "";
+  if(resources.length===0){ wrap.innerHTML = '<div class="empty">No resources added yet.</div>'; return; }
+
+  const order = [];
+  const byCategory = {};
+  resources.forEach(r=>{
+    const cat = r.category || "Other";
+    if(!byCategory[cat]){ byCategory[cat] = []; order.push(cat); }
+    byCategory[cat].push(r);
+  });
+
+  order.forEach(cat=>{
+    const section = document.createElement("div");
+    section.className = "res-category";
+    const h2 = document.createElement("h2");
+    h2.textContent = cat;
+    section.appendChild(h2);
+
+    const grid = document.createElement("div");
+    grid.className = "res-grid";
+    byCategory[cat].forEach(r=>{
+      const a = document.createElement("a");
+      a.className = "res-card";
+      a.href = r.url; a.target = "_blank"; a.rel = "noopener noreferrer";
+      a.innerHTML = `
+        <div class="res-title">${escapeHtml(r.title)} <span class="arrow">→</span></div>
+        <p class="res-desc">${escapeHtml(r.desc||"")}</p>
+        <span class="res-domain">${escapeHtml(domainOf(r.url))}</span>`;
+      grid.appendChild(a);
+    });
+    section.appendChild(grid);
+    wrap.appendChild(section);
+  });
+}
+
+/* =========================================================================
    NAV WIRING
    ========================================================================= */
 document.querySelectorAll(".tab-btn[data-tab]").forEach(btn=>{
@@ -855,7 +963,7 @@ document.getElementById("event-search").addEventListener("input", renderEvents);
    EXPORT / IMPORT (public footer — full backup of all three collections)
    ========================================================================= */
 document.getElementById("export-btn").addEventListener("click", ()=>{
-  const payload = { artists, events, news, exportedAt: new Date().toISOString() };
+  const payload = { artists, events, news, resources, exportedAt: new Date().toISOString() };
   const blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -869,10 +977,11 @@ document.getElementById("import-file").addEventListener("change", e=>{
   reader.onload = ev=>{
     try{
       const data = JSON.parse(ev.target.result);
-      if(data.artists) { artists = data.artists; saveArtists(); }
-      if(data.events)  { events  = data.events;  saveEvents(); }
-      if(data.news)    { news    = data.news;    saveNews(); }
-      renderArtistGrid(); renderArtistTagbar(); renderEvents(); renderNews(); renderHome();
+      if(data.artists)   { artists   = data.artists;   saveArtists(); }
+      if(data.events)    { events    = data.events;    saveEvents(); }
+      if(data.news)      { news      = data.news;      saveNews(); }
+      if(data.resources) { resources = data.resources; saveResources(); }
+      renderArtistGrid(); renderArtistTagbar(); renderEvents(); renderNews(); renderResources(); renderHome();
       alert("Backup imported.");
     }catch(err){ alert("Could not read that file: " + err.message); }
   };
@@ -932,10 +1041,12 @@ function renderAdmin(){
       <button class="admin-tab-btn active" data-admin-tab="artists">Artists</button>
       <button class="admin-tab-btn" data-admin-tab="events">Events</button>
       <button class="admin-tab-btn" data-admin-tab="news">News</button>
+      <button class="admin-tab-btn" data-admin-tab="resources">Resources</button>
     </div>
     <div class="admin-panel active" id="admin-panel-artists"></div>
     <div class="admin-panel" id="admin-panel-events"></div>
     <div class="admin-panel" id="admin-panel-news"></div>
+    <div class="admin-panel" id="admin-panel-resources"></div>
   `;
   document.querySelectorAll(".admin-tab-btn").forEach(btn=>{
     btn.addEventListener("click", ()=>{
@@ -948,6 +1059,7 @@ function renderAdmin(){
   renderAdminArtists();
   renderAdminEvents();
   renderAdminNews();
+  renderAdminResources();
 }
 
 /* ---- image helper: resize/compress an uploaded file to a data URL ---- */
@@ -1297,6 +1409,67 @@ function renderAdminNews(){
   });
 }
 
+/* ---- Admin: Resources ---- */
+function renderAdminResources(){
+  const el = document.getElementById("admin-panel-resources");
+  const categories = [...new Set(resources.map(r=>r.category).filter(Boolean))];
+  el.innerHTML = `
+    <h2 style="font-size:20px;">Add a resource</h2>
+    <form class="admin-form" id="resource-admin-form">
+      <div class="field"><label for="ra-title">Title *</label><input type="text" id="ra-title" required></div>
+      <div class="field"><label for="ra-url">URL *</label><input type="url" id="ra-url" placeholder="https://…" required></div>
+      <div class="field full"><label for="ra-category">Category *</label>
+        <input type="text" id="ra-category" list="ra-category-list" placeholder="e.g. Instrument building & kits" required>
+        <datalist id="ra-category-list">${categories.map(c=>`<option value="${escapeAttr(c)}">`).join("")}</datalist>
+        <span class="hint">Existing: ${categories.map(escapeHtml).join(", ") || "none yet"} — or type a new one.</span>
+      </div>
+      <div class="field full"><label for="ra-desc">Description</label><textarea id="ra-desc"></textarea></div>
+      <div class="actions"><button type="submit" class="primary">Add resource</button><span class="form-msg" id="ra-msg"></span></div>
+    </form>
+    <div class="actions" style="margin:24px 0 12px;">
+      <h2 style="font-size:20px; margin:0;">Existing resources (${resources.length})</h2>
+      <button class="ghost" id="publish-resources-btn">Download updated resources.json</button>
+    </div>
+    ${jsonEditorHtml("resources-json")}
+    <div class="admin-list" id="admin-resource-list" style="margin-top:16px;"></div>
+  `;
+  document.getElementById("publish-resources-btn").addEventListener("click", ()=> downloadJson("resources.json", resources));
+  wireJsonEditor("resources-json", ()=>resources, (parsed)=>{
+    resources = parsed.map((r,i)=>({ id: r.id || ("r-"+Date.now()+"-"+i), ...r }));
+    saveResources();
+    renderAdminResources(); renderResources();
+  });
+  document.getElementById("resource-admin-form").addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const title = document.getElementById("ra-title").value.trim();
+    const url = document.getElementById("ra-url").value.trim();
+    const category = document.getElementById("ra-category").value.trim();
+    if(!title || !url || !category) return;
+    resources.push({ id:"r-"+Date.now(), title, url, category, desc: document.getElementById("ra-desc").value.trim() });
+    saveResources();
+    document.getElementById("ra-msg").textContent = `Added "${title}".`;
+    renderAdminResources(); renderResources();
+  });
+  const list = document.getElementById("admin-resource-list");
+  list.innerHTML = "";
+  resources.forEach(r=>{
+    const row = document.createElement("div");
+    row.className = "admin-row";
+    row.innerHTML = `
+      <div class="info"><b>${escapeHtml(r.title)}</b><span>${escapeHtml(r.category||"")}</span></div>
+      <div class="row-actions"><button class="small-danger" data-del="${r.id}">Delete</button></div>`;
+    list.appendChild(row);
+  });
+  list.querySelectorAll("[data-del]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      if(confirm("Delete this resource?")){
+        resources = resources.filter(x=>x.id!==btn.dataset.del);
+        saveResources(); renderAdminResources(); renderResources();
+      }
+    });
+  });
+}
+
 /* =========================================================================
    INIT
    ========================================================================= */
@@ -1307,6 +1480,7 @@ function renderAdminNews(){
   renderArtistGrid();
   renderEvents();
   renderNews();
+  renderResources();
   route();
 })();
 </script>
