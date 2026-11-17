@@ -1,0 +1,90 @@
+[
+  {
+    "id": "w-music-hackspace-online-and-in-person-courses",
+    "title": "Online and in-person courses",
+    "provider": "Music Hackspace",
+    "date": "",
+    "location": "London / Online",
+    "region": "London",
+    "format": "Online & in-person",
+    "url": "https://musichackspace.org/",
+    "desc": "Ongoing programme of live online workshops and courses in creative coding for sound and music — Max/MSP, Pure Data, TouchDesigner and more. Check the site for the current schedule."
+  },
+  {
+    "id": "w-bela-workshops-and-training",
+    "title": "Workshops and training",
+    "provider": "Bela",
+    "date": "",
+    "location": "UK / Online",
+    "region": "London",
+    "format": "Online & in-person",
+    "url": "https://bela.io/",
+    "desc": "Bela runs workshops and events on building responsive audio instruments with its open-source platform. See the site for upcoming sessions."
+  },
+  {
+    "id": "w-london-hackspace-classes-and-open-sessions",
+    "title": "Classes and open sessions",
+    "provider": "London Hackspace",
+    "date": "",
+    "location": "London",
+    "region": "London",
+    "format": "In person",
+    "url": "https://london.hackspace.org.uk/",
+    "desc": "Member-run space in East London with regular classes, tool inductions and open access to electronics benches. Hackoustic calls it home."
+  },
+  {
+    "id": "w-south-london-makerspace-weekly-electronics-meet-up",
+    "title": "Weekly electronics meet-up",
+    "provider": "South London Makerspace",
+    "date": "",
+    "location": "Herne Hill, London",
+    "region": "London",
+    "format": "In person",
+    "url": "https://southlondonmakerspace.org/",
+    "desc": "Community workshop with electronics benches and a regular electronics meet-up — a friendly place to get help with a first build."
+  },
+  {
+    "id": "w-drake-music-accessible-music-making-workshops",
+    "title": "Accessible music-making workshops",
+    "provider": "Drake Music",
+    "date": "",
+    "location": "UK",
+    "region": "National",
+    "format": "In person & online",
+    "url": "https://www.drakemusic.org/",
+    "desc": "UK charity running programmes at the intersection of music, disability and technology, including accessible instrument design."
+  },
+  {
+    "id": "w-clip-sound-and-music-music-tech-workshops-for-young-people",
+    "title": "Music-tech workshops for young people",
+    "provider": "CLIP Sound and Music",
+    "date": "",
+    "location": "Colchester, Essex",
+    "region": "East of England",
+    "format": "In person",
+    "url": "https://www.clipsoundandmusic.uk/",
+    "desc": "Colchester-based social enterprise running accessible music-tech workshops across Essex and East Anglia."
+  },
+  {
+    "id": "w-hackoustic-hackoustic-nights-and-workshops",
+    "title": "Hackoustic nights and workshops",
+    "provider": "Hackoustic",
+    "date": "",
+    "location": "London",
+    "region": "London",
+    "format": "In person",
+    "url": "https://www.hackoustic.org/",
+    "desc": "Hackoustic Presents nights, workshops and talks for sonic hackers of every level. Follow us for upcoming dates."
+  },
+  {
+    "id": "w-access-space-sheffield-media-lab-and-workshops",
+    "title": "Sheffield media lab and workshops",
+    "provider": "Access Space",
+    "date": "",
+    "location": "Sheffield",
+    "region": "Yorkshire",
+    "format": "In person",
+    "url": "https://access-space.org/",
+    "desc": "Long-running open-access media lab in Sheffield offering free access to technology and community workshops."
+  }
+]

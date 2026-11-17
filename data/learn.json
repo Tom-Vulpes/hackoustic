@@ -1,0 +1,332 @@
+{
+  "start": "start",
+  "nodes": {
+    "start": {
+      "question": "What do you want to make?",
+      "hint": "Pick the closest — you can always go back.",
+      "options": [
+        {
+          "label": "An instrument I can play",
+          "next": "instrument"
+        },
+        {
+          "label": "An interactive installation or artwork",
+          "next": "install"
+        },
+        {
+          "label": "Sound art, field recording or listening-based work",
+          "next": "soundart"
+        },
+        {
+          "label": "I'm not sure yet — I just want to start with the basics",
+          "next": "basics"
+        }
+      ]
+    },
+    "instrument": {
+      "question": "How do you want to build it?",
+      "options": [
+        {
+          "label": "Analogue circuits and synths",
+          "next": "i-analogue"
+        },
+        {
+          "label": "Digital — microcontrollers and code",
+          "next": "i-digital"
+        },
+        {
+          "label": "Touch-based, using everyday objects",
+          "next": "i-touch"
+        },
+        {
+          "label": "Acoustic or physical — wood, metal, strings, found objects",
+          "next": "i-acoustic"
+        },
+        {
+          "label": "An instrument that's accessible to disabled musicians",
+          "next": "i-access"
+        }
+      ]
+    },
+    "i-analogue": {
+      "result": {
+        "title": "Building analogue instruments",
+        "blurb": "Start with a simple oscillator and build up. These give you the theory and the build guides, and a pile of inspiration.",
+        "resources": [
+          "r-18",
+          "r-8",
+          "r-21",
+          "r-29",
+          "r-13"
+        ],
+        "tabs": [
+          "workshops",
+          "practitioners"
+        ]
+      }
+    },
+    "i-digital": {
+      "result": {
+        "title": "Building digital instruments",
+        "blurb": "A microcontroller plus a few sensors goes a long way. Pick a platform and a software environment, and follow a project close to what you want to make.",
+        "resources": [
+          "r-6",
+          "r-17",
+          "r-22",
+          "r-23",
+          "r-11"
+        ],
+        "tabs": [
+          "workshops",
+          "practitioners"
+        ]
+      }
+    },
+    "i-touch": {
+      "result": {
+        "title": "Touch-based instruments",
+        "blurb": "Turn fruit, paint, metal or anything conductive into a controller — often without writing a line of code.",
+        "resources": [
+          "r-7",
+          "r-24",
+          "r-9",
+          "r-13"
+        ],
+        "tabs": [
+          "workshops",
+          "practitioners"
+        ]
+      }
+    },
+    "i-acoustic": {
+      "result": {
+        "title": "Acoustic and physical instruments",
+        "blurb": "Often the best resource is a room full of people with tools. Find a makerspace, then look at how others have built instruments from found materials.",
+        "resources": [
+          "r-2",
+          "r-5",
+          "r-15",
+          "r-4"
+        ],
+        "tabs": [
+          "workshops",
+          "practitioners"
+        ]
+      }
+    },
+    "i-access": {
+      "result": {
+        "title": "Accessible instrument design",
+        "blurb": "Designing with disabled musicians from the start leads to better instruments for everyone.",
+        "resources": [
+          "r-10",
+          "r-6",
+          "r-7"
+        ],
+        "tabs": [
+          "workshops",
+          "practitioners"
+        ]
+      }
+    },
+    "install": {
+      "question": "What will trigger or drive the sound?",
+      "options": [
+        {
+          "label": "People touching things",
+          "next": "n-touch"
+        },
+        {
+          "label": "Movement, light or other sensors",
+          "next": "n-sensors"
+        },
+        {
+          "label": "Software — generative or algorithmic sound",
+          "next": "n-software"
+        },
+        {
+          "label": "I don't know yet",
+          "next": "n-unsure"
+        }
+      ]
+    },
+    "n-touch": {
+      "result": {
+        "title": "Touch-triggered installations",
+        "blurb": "Conductive materials and simple boards let visitors play the work with their hands.",
+        "resources": [
+          "r-7",
+          "r-24",
+          "r-22",
+          "r-13"
+        ],
+        "tabs": [
+          "workshops",
+          "practitioners"
+        ]
+      }
+    },
+    "n-sensors": {
+      "result": {
+        "title": "Sensor-driven installations",
+        "blurb": "Read the world with sensors, then map it to sound. Low-latency audio platforms and visual patching tools both work well here.",
+        "resources": [
+          "r-6",
+          "r-11",
+          "r-27",
+          "r-14",
+          "r-22"
+        ],
+        "tabs": [
+          "workshops",
+          "practitioners"
+        ]
+      }
+    },
+    "n-software": {
+      "result": {
+        "title": "Generative and software-driven sound",
+        "blurb": "Learn a sound programming environment, then let your rules make the music.",
+        "resources": [
+          "r-12",
+          "r-11",
+          "r-26",
+          "r-27",
+          "r-25"
+        ],
+        "tabs": [
+          "workshops",
+          "practitioners"
+        ]
+      }
+    },
+    "n-unsure": {
+      "result": {
+        "title": "Finding your way in",
+        "blurb": "Look at what other people have built, then pick a small first project and join a community.",
+        "resources": [
+          "r-0",
+          "r-2",
+          "r-20",
+          "r-30"
+        ],
+        "tabs": [
+          "workshops",
+          "practitioners"
+        ]
+      }
+    },
+    "soundart": {
+      "question": "Which way in appeals most?",
+      "options": [
+        {
+          "label": "Recording and working with sounds",
+          "next": "s-record"
+        },
+        {
+          "label": "Coding sound",
+          "next": "s-code"
+        },
+        {
+          "label": "Seeing what other sound artists do",
+          "next": "s-see"
+        }
+      ]
+    },
+    "s-record": {
+      "result": {
+        "title": "Recording and sampling",
+        "blurb": "Collect sounds, then learn to shape them.",
+        "resources": [
+          "r-16",
+          "r-19",
+          "r-28"
+        ],
+        "tabs": [
+          "workshops",
+          "practitioners"
+        ]
+      }
+    },
+    "s-code": {
+      "result": {
+        "title": "Coding sound",
+        "blurb": "Free environments with big communities and lots of tutorials.",
+        "resources": [
+          "r-12",
+          "r-11",
+          "r-26",
+          "r-0"
+        ],
+        "tabs": [
+          "workshops",
+          "practitioners"
+        ]
+      }
+    },
+    "s-see": {
+      "result": {
+        "title": "Learning from other practitioners",
+        "blurb": "Browse practitioners and past Hackoustic artists, then follow the links they share.",
+        "resources": [
+          "r-20",
+          "r-19",
+          "r-21"
+        ],
+        "tabs": [
+          "practitioners",
+          "artists"
+        ]
+      }
+    },
+    "basics": {
+      "question": "What would you like to learn first?",
+      "options": [
+        {
+          "label": "How electronics works",
+          "next": "b-elec"
+        },
+        {
+          "label": "How synthesis works",
+          "next": "b-synth"
+        },
+        {
+          "label": "Just let me meet some people",
+          "next": "n-unsure"
+        }
+      ]
+    },
+    "b-elec": {
+      "result": {
+        "title": "Electronics basics",
+        "blurb": "Free, step-by-step guides, plus places where you can solder alongside others.",
+        "resources": [
+          "r-13",
+          "r-14",
+          "r-15",
+          "r-2",
+          "r-4"
+        ],
+        "tabs": [
+          "workshops",
+          "practitioners"
+        ]
+      }
+    },
+    "b-synth": {
+      "result": {
+        "title": "Synthesis basics",
+        "blurb": "Understand oscillators, filters and envelopes by playing with them first.",
+        "resources": [
+          "r-28",
+          "r-25",
+          "r-18"
+        ],
+        "tabs": [
+          "workshops",
+          "practitioners"
+        ]
+      }
+    }
+  }
+}

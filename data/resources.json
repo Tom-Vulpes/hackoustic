@@ -152,5 +152,68 @@
     "url": "https://www.routledge.com/Handmade-Electronic-Music-The-Art-of-Hardware-Hacking/Collins/p/book/9780367210106",
     "category": "Reading",
     "desc": "Nicolas Collins's widely-recommended book on circuit bending and hardware hacking — a hands-on introduction to building noise-making circuits with little to no electronics background needed."
+  },
+  {
+    "id": "r-22",
+    "title": "Arduino",
+    "url": "https://www.arduino.cc/",
+    "category": "Instrument building & kits",
+    "desc": "The open-source microcontroller platform most makers start with — huge community, endless sensor and MIDI examples."
+  },
+  {
+    "id": "r-23",
+    "title": "Teensy",
+    "url": "https://www.pjrc.com/teensy/",
+    "category": "Instrument building & kits",
+    "desc": "Fast microcontroller boards with a dedicated audio library, popular for DIY synths, effects and MIDI controllers."
+  },
+  {
+    "id": "r-24",
+    "title": "Bare Conductive",
+    "url": "https://www.bareconductive.com/",
+    "category": "Instrument building & kits",
+    "desc": "London-founded maker of conductive paint and the Touch Board — a quick way to make touch-sensitive sound installations."
+  },
+  {
+    "id": "r-25",
+    "title": "VCV Rack",
+    "url": "https://vcvrack.com/",
+    "category": "Software & tools",
+    "desc": "Free open-source virtual modular synthesiser — a way to learn patching and signal flow before buying any hardware."
+  },
+  {
+    "id": "r-26",
+    "title": "Sonic Pi",
+    "url": "https://sonic-pi.net/",
+    "category": "Software & tools",
+    "desc": "Free live-coding music environment designed to be easy to learn, widely used in education."
+  },
+  {
+    "id": "r-27",
+    "title": "Max (Cycling '74)",
+    "url": "https://cycling74.com/",
+    "category": "Software & tools",
+    "desc": "Visual programming environment for audio, video and interactive media, common in installation and performance work."
+  },
+  {
+    "id": "r-28",
+    "title": "Learning Synths",
+    "url": "https://learningsynths.ableton.com/",
+    "category": "Tutorials & learning",
+    "desc": "Ableton's free, interactive browser-based introduction to synthesis."
+  },
+  {
+    "id": "r-29",
+    "title": "ElectroSmash",
+    "url": "https://www.electrosmash.com/",
+    "category": "Tutorials & learning",
+    "desc": "Detailed circuit analyses of classic effects pedals and amplifiers — useful for understanding and building audio electronics."
+  },
+  {
+    "id": "r-30",
+    "title": "Hackaday",
+    "url": "https://hackaday.com/",
+    "category": "Reading",
+    "desc": "Daily news and project write-ups from the hardware-hacking world, with plenty of music and sound builds."
   }
 ]

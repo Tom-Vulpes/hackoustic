@@ -1,0 +1,363 @@
+[
+  {
+    "id": "p-alvin-lucier",
+    "name": "Alvin Lucier",
+    "tags": [
+      "composer",
+      "acoustics",
+      "historic"
+    ],
+    "location": "USA",
+    "image": "",
+    "bio": "American composer (1931–2021) whose works explore acoustic phenomena, resonance and the physics of sound. Best known for I Am Sitting in a Room (1969), where a recorded voice is replayed into a room until the room itself becomes the instrument.",
+    "links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Alvin_Lucier"
+      }
+    ]
+  },
+  {
+    "id": "p-pauline-oliveros",
+    "name": "Pauline Oliveros",
+    "tags": [
+      "composer",
+      "educator",
+      "historic"
+    ],
+    "location": "USA",
+    "image": "",
+    "bio": "American composer and accordionist (1932–2016) who developed Deep Listening, a practice built around attentive, expanded listening to the sounds around us. A good starting point for anyone interested in listening as an artistic act.",
+    "links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Pauline_Oliveros"
+      }
+    ]
+  },
+  {
+    "id": "p-max-neuhaus",
+    "name": "Max Neuhaus",
+    "tags": [
+      "sound-artist",
+      "installation",
+      "historic"
+    ],
+    "location": "USA / Germany",
+    "image": "",
+    "bio": "Percussionist turned sound artist (1939–2009) who pioneered permanent sound installations in public space, including a long-running work beneath Times Square in New York.",
+    "links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Max_Neuhaus"
+      }
+    ]
+  },
+  {
+    "id": "p-hugh-davies",
+    "name": "Hugh Davies",
+    "tags": [
+      "instrument-builder",
+      "electronics",
+      "historic"
+    ],
+    "location": "UK",
+    "image": "",
+    "bio": "British electronic-music pioneer and instrument inventor (1943–2005), known for self-built electro-acoustic instruments made from found objects and contact-miked materials.",
+    "links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Hugh_Davies_(composer)"
+      }
+    ]
+  },
+  {
+    "id": "p-harry-partch",
+    "name": "Harry Partch",
+    "tags": [
+      "composer",
+      "instrument-builder",
+      "historic"
+    ],
+    "location": "USA",
+    "image": "",
+    "bio": "American composer (1901–1974) who designed and built his own instruments to play music in microtonal tunings, and wrote about his approach in Genesis of a Music.",
+    "links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Harry_Partch"
+      }
+    ]
+  },
+  {
+    "id": "p-trimpin",
+    "name": "Trimpin",
+    "tags": [
+      "instrument-builder",
+      "installation",
+      "sculpture"
+    ],
+    "location": "USA",
+    "image": "",
+    "bio": "German-born, Seattle-based sound sculptor and inventor, known for kinetic, computer-controlled instruments and large-scale musical installations.",
+    "links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Trimpin"
+      }
+    ]
+  },
+  {
+    "id": "p-christina-kubisch",
+    "name": "Christina Kubisch",
+    "tags": [
+      "sound-artist",
+      "installation",
+      "electronics"
+    ],
+    "location": "Germany",
+    "image": "",
+    "bio": "German sound artist known for her Electrical Walks, where specially built induction headphones reveal the hidden electromagnetic fields of cities and buildings.",
+    "links": [
+      {
+        "label": "Website",
+        "url": "https://www.christinakubisch.de/"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Christina_Kubisch"
+      }
+    ]
+  },
+  {
+    "id": "p-bill-fontana",
+    "name": "Bill Fontana",
+    "tags": [
+      "sound-artist",
+      "installation"
+    ],
+    "location": "USA",
+    "image": "",
+    "bio": "American sound artist known for sound sculptures that transplant live sounds from one place into another, often in public and architectural spaces.",
+    "links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Bill_Fontana"
+      }
+    ]
+  },
+  {
+    "id": "p-janet-cardiff-george-bures-miller",
+    "name": "Janet Cardiff & George Bures Miller",
+    "tags": [
+      "sound-artist",
+      "installation",
+      "collective"
+    ],
+    "location": "Canada",
+    "image": "",
+    "bio": "Artist duo known for immersive sound installations and audio walks, including Forty Part Motet (2001), in which forty speakers each play one singer's voice.",
+    "links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Janet_Cardiff"
+      }
+    ]
+  },
+  {
+    "id": "p-tristan-perich",
+    "name": "Tristan Perich",
+    "tags": [
+      "composer",
+      "electronics",
+      "installation"
+    ],
+    "location": "USA",
+    "image": "",
+    "bio": "Composer and artist whose 1-bit electronic music is generated by a circuit on a chip, and who also makes large-scale installation and drawing machine works.",
+    "links": [
+      {
+        "label": "Website",
+        "url": "https://www.tristanperich.com/"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Tristan_Perich"
+      }
+    ]
+  },
+  {
+    "id": "p-nicolas-collins",
+    "name": "Nicolas Collins",
+    "tags": [
+      "electronics",
+      "educator",
+      "composer"
+    ],
+    "location": "USA",
+    "image": "",
+    "bio": "Composer, performer and author of Handmade Electronic Music, a hands-on guide to circuit bending and hardware hacking that has introduced a generation of makers to building their own sound circuits.",
+    "links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Nicolas_Collins_(composer)"
+      }
+    ]
+  },
+  {
+    "id": "p-laetitia-sonami",
+    "name": "Laetitia Sonami",
+    "tags": [
+      "performer",
+      "instrument-builder",
+      "electronics"
+    ],
+    "location": "USA / France",
+    "image": "",
+    "bio": "Sound artist and performer who developed the Lady's Glove, a sensor-based instrument that lets her shape electronic sound through hand and finger movements.",
+    "links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Laetitia_Sonami"
+      }
+    ]
+  },
+  {
+    "id": "p-tod-machover",
+    "name": "Tod Machover",
+    "tags": [
+      "composer",
+      "music-technologist",
+      "researcher"
+    ],
+    "location": "USA",
+    "image": "",
+    "bio": "Composer and MIT Media Lab professor who pioneered hyperinstruments — instruments enhanced with sensing and computation to extend what players can express.",
+    "links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Tod_Machover"
+      }
+    ]
+  },
+  {
+    "id": "p-yuri-suzuki",
+    "name": "Yuri Suzuki",
+    "tags": [
+      "sound-artist",
+      "designer",
+      "installation"
+    ],
+    "location": "UK",
+    "image": "",
+    "bio": "Sound artist and designer based in London, working across installations, instruments and products that make sound and music more tangible and playful.",
+    "links": [
+      {
+        "label": "Website",
+        "url": "https://yurisuzuki.com/"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Yuri_Suzuki"
+      }
+    ]
+  },
+  {
+    "id": "p-di-mainstone",
+    "name": "Di Mainstone",
+    "tags": [
+      "designer",
+      "performer",
+      "instrument-builder"
+    ],
+    "location": "UK",
+    "image": "",
+    "bio": "London-based artist and designer who creates wearable instruments and interactive sculptures, including the Human Harp, which turns the cables of bridges into playable strings.",
+    "links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Di_Mainstone"
+      }
+    ]
+  },
+  {
+    "id": "p-mi-mu-gloves",
+    "name": "Mi.Mu Gloves",
+    "tags": [
+      "instrument-builder",
+      "music-technologist",
+      "electronics"
+    ],
+    "location": "UK",
+    "image": "",
+    "bio": "Wearable gestural instrument developed with musician Imogen Heap and a team of makers, letting performers control sound and music through movement of the hands.",
+    "links": [
+      {
+        "label": "Website",
+        "url": "https://mimugloves.com/"
+      }
+    ]
+  },
+  {
+    "id": "p-atau-tanaka",
+    "name": "Atau Tanaka",
+    "tags": [
+      "researcher",
+      "performer",
+      "music-technologist"
+    ],
+    "location": "UK",
+    "image": "",
+    "bio": "Artist and researcher working on gestural musical interaction and bio-sensing, including performances using muscle sensors as an instrument. Based at Goldsmiths, University of London.",
+    "links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Atau_Tanaka"
+      }
+    ]
+  },
+  {
+    "id": "p-rebecca-fiebrink",
+    "name": "Rebecca Fiebrink",
+    "tags": [
+      "researcher",
+      "creative-coder",
+      "educator"
+    ],
+    "location": "UK",
+    "image": "",
+    "bio": "Computer scientist and educator who created Wekinator, free software that lets artists and musicians build interactive systems by demonstrating examples to a machine learning model rather than writing code.",
+    "links": [
+      {
+        "label": "Wekinator",
+        "url": "http://www.wekinator.org/"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Rebecca_Fiebrink"
+      }
+    ]
+  },
+  {
+    "id": "p-ryoji-ikeda",
+    "name": "Ryoji Ikeda",
+    "tags": [
+      "sound-artist",
+      "installation",
+      "composer"
+    ],
+    "location": "Japan / France",
+    "image": "",
+    "bio": "Japanese artist working with sound, light and data, known for large-scale audiovisual installations built from extremely precise electronic sound.",
+    "links": [
+      {
+        "label": "Website",
+        "url": "https://www.ryojiikeda.com/"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Ryoji_Ikeda"
+      }
+    ]
+  }
+]
