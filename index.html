@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hackoustic — Sound, Hacked Open</title>
+<meta name="description" content="Hackoustic: a London acoustic-hacking group. Artist directory, practitioners, workshops and a guide to getting into sound art, interactive installations and instrument building.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="header-top">
+    <a href="https://www.facebook.com/hackoustic/" target="_blank" rel="noopener">Facebook</a>
+    <a href="https://www.instagram.com/hackoustic/" target="_blank" rel="noopener">Instagram</a>
+    <a href="mailto:info@hackoustic.org">Email</a>
+  </div>
+  <div class="nav">
+    <a class="wordmark" href="#home">HACKOUSTIC</a>
+    <nav class="tabs">
+      <a class="tab-btn" data-tab="home" href="#home">Home</a>
+      <a class="tab-btn" data-tab="learn" href="#learn">Learn</a>
+      <a class="tab-btn" data-tab="workshops" href="#workshops">Workshops</a>
+      <a class="tab-btn" data-tab="artists" href="#artists">Our Artists</a>
+      <a class="tab-btn" data-tab="practitioners" href="#practitioners">Practitioners</a>
+      <a class="tab-btn" data-tab="resources" href="#resources">Resources</a>
+      <a class="tab-btn" data-tab="events" href="#events">Events</a>
+      <a class="tab-btn" data-tab="news" href="#news">News</a>
+      <a class="tab-btn" data-tab="about" href="#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="tab-panel" id="panel-home">
+    <div class="hero">
+      <p class="eyebrow">London Hackspace · Est. 2014</p>
+      <h1>Your way into sound art, interactive installations and instrument building.</h1>
+      <p class="sub">Hackoustic is a hacking group exploring acoustics and instrument building. This site is a free guide for anyone who wants to start making — whether you're a complete beginner or already building.</p>
+      <div class="submit-bar">
+        <a class="btn" href="#learn">Find your starting point</a>
+        <a class="btn outline" href="#workshops">Find a workshop</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b id="stat-artists">0</b><span>Hackoustic artists</span></div>
+        <div class="stat"><b id="stat-practitioners">0</b><span>Practitioners</span></div>
+        <div class="stat"><b id="stat-workshops">0</b><span>Workshop providers</span></div>
+        <div class="stat"><b id="stat-resources">0</b><span>Resources</span></div>
+      </div>
+    </div>
+    <div class="home-section">
+      <h2>Explore</h2>
+      <div class="home-grid" id="home-grid">
+        <div class="home-card"><h3>Learn</h3><p>Answer a few questions about what you want to make and get a tailored list of places to start.</p><a class="cta-link" href="#learn">→ Start the guide</a></div>
+        <div class="home-card"><h3>Workshops</h3><p>Sound art and instrument-making workshops and groups across the UK.</p><a class="cta-link" href="#workshops">→ Find a workshop</a></div>
+        <div class="home-card"><h3>Our Artists</h3><p>The sound artists, hackers and builders Hackoustic has worked with.</p><a class="cta-link" href="#artists">→ Browse artists</a></div>
+        <div class="home-card"><h3>Practitioners</h3><p>Artists, makers and researchers worth knowing about, beyond our own events.</p><a class="cta-link" href="#practitioners">→ Discover practitioners</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab-panel" id="panel-learn">
+    <div class="hero" style="padding-top:40px;">
+      <p class="eyebrow">Learn</p>
+      <h1 style="font-size:clamp(28px,4vw,38px);">What do you want to make?</h1>
+      <p class="sub">Answer a few quick questions and we'll point you to specific tutorials, kits, software and communities.</p>
+    </div>
+    <div class="flow" id="flow"></div>
+  </section>
+
+  <section class="tab-panel" id="panel-workshops">
+    <div class="hero" style="padding-top:40px;">
+      <p class="eyebrow">Workshops</p>
+      <h1 style="font-size:clamp(28px,4vw,38px);">Workshops and groups in the UK</h1>
+      <p class="sub">Places to learn sound art and instrument making in person or online. Dated workshops drop off automatically once they've passed; ongoing providers stay listed.</p>
+      <div class="submit-bar" id="submit-workshop"></div>
+    </div>
+    <div class="controls">
+      <input type="search" id="ws-search" placeholder="Search workshops, providers or places…" aria-label="Search workshops">
+      <select id="ws-region" class="filter" aria-label="Filter by region"></select>
+    </div>
+    <section class="directory"><div id="ws-list"></div></section>
+  </section>
+
+  <section class="tab-panel" id="panel-artists">
+    <div class="hero" style="padding-top:40px;">
+      <p class="eyebrow">Hackoustic Artists</p>
+      <h1 style="font-size:clamp(28px,4vw,38px);">Who we've worked with</h1>
+      <p class="sub">We're very lucky to have worked with a huge number of extremely talented artists, designers, scientists and musicians over the years.</p>
+      <div class="note"><b>A note on completeness:</b> compiled from Hackoustic's own archive plus public event listings — not a full record of every event. Missing someone? Let us know.</div>
+    </div>
+    <div class="controls" style="flex-direction:column; align-items:stretch;">
+      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+        <input type="search" id="artist-search" placeholder="Search by name or description…" aria-label="Search artists">
+        <details class="tag-details"><summary>Filter by tag</summary><div class="tagbar" id="artist-tagbar"></div></details>
+      </div>
+      <div id="artist-active" class="active-tag-line" style="display:none;"></div>
+    </div>
+    <section class="directory"><div class="grid" id="artist-grid"></div></section>
+  </section>
+
+  <section class="tab-panel" id="panel-practitioners">
+    <div class="hero" style="padding-top:40px;">
+      <p class="eyebrow">Practitioners</p>
+      <h1 style="font-size:clamp(28px,4vw,38px);">Artists and makers to know</h1>
+      <p class="sub">A growing directory of sound artists, instrument builders and researchers we haven't (yet) worked with — pioneers, contemporaries and people whose work we admire.</p>
+      <div class="note"><b>Know someone who should be here?</b> Suggestions are reviewed by the Hackoustic team before they appear.</div>
+      <div class="submit-bar" id="submit-practitioner"></div>
+    </div>
+    <div class="controls" style="flex-direction:column; align-items:stretch;">
+      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+        <input type="search" id="prac-search" placeholder="Search by name, place or description…" aria-label="Search practitioners">
+        <details class="tag-details"><summary>Filter by tag</summary><div class="tagbar" id="prac-tagbar"></div></details>
+      </div>
+      <div id="prac-active" class="active-tag-line" style="display:none;"></div>
+    </div>
+    <section class="directory"><div class="grid" id="prac-grid"></div></section>
+  </section>
+
+  <section class="tab-panel" id="panel-resources">
+    <div class="hero" style="padding-top:40px;">
+      <p class="eyebrow">Keep learning</p>
+      <h1 style="font-size:clamp(28px,4vw,38px);">Resources</h1>
+      <p class="sub">Communities, kits, software, tutorials and reading for sound art, instrument building and interactive artworks.</p>
+      <div class="submit-bar" id="submit-resource"></div>
+    </div>
+    <section class="directory"><div id="resources-list"></div></section>
+  </section>
+
+  <section class="tab-panel" id="panel-events">
+    <div class="hero" style="padding-top:40px;">
+      <p class="eyebrow">Since 2014</p>
+      <h1 style="font-size:clamp(28px,4vw,38px);">Event history</h1>
+      <p class="sub">Hackoustic Presents nights, festivals, Tate Modern and V&amp;A appearances, and everything in between — newest first.</p>
+    </div>
+    <div class="controls"><input type="search" id="event-search" placeholder="Search events by title or venue…" aria-label="Search events"></div>
+    <section class="directory"><div class="timeline" id="event-list"></div></section>
+  </section>
+
+  <section class="tab-panel" id="panel-news">
+    <div class="hero" style="padding-top:40px;">
+      <p class="eyebrow">Milestones</p>
+      <h1 style="font-size:clamp(28px,4vw,38px);">News</h1>
+      <p class="sub">Awards, press mentions and moments worth remembering from over a decade of Hackoustic.</p>
+    </div>
+    <section class="directory"><div class="news-grid" id="news-grid"></div></section>
+  </section>
+
+  <section class="tab-panel" id="panel-about">
+    <div class="about-body">
+      <p class="eyebrow">About</p>
+      <h1 style="font-size:clamp(28px,4vw,38px);">About Hackoustic</h1>
+      <p>Hackoustic is a hacking group dedicated to exploring acoustics and instrument building. We were formed in 2014 at the London Hackspace as a place to experiment with acoustic sound, physical interfaces and instrument building — anything involving more than a laptop, modular synth and speakers.</p>
+      <p>We run a host of different types of events related to acoustic hacking, including festivals, workshops and talks. We also appear as part of larger events and venues such as the Tate Modern, the V&amp;A and Abbey Road Studios, as well as at our spiritual home, Iklectik.</p>
+      <p>Our goal is to provide a platform for sonic-hackers of all kinds, from musical instrument builders to sound-artists, to present their work to the public — as well as providing workshops and educational opportunities for anyone interested in learning more, from newbie hobbyist to seasoned professional.</p>
+      <p>Our group welcomes anyone, from any background, with any level of experience. If you have an idea for a brand new instrument but don't know where to start, you may find the ideal person to point you in the right direction. Get in touch and let us know what you're up to.</p>
+      <p class="founders">Hackoustic was founded by Tim Yates and Saif Bunni, and is now run by Tim Yates and Tom &amp; Steph Fox.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <p class="footer-about">Hackoustic — a London acoustic-hacking group since 2014. Listings are suggested by the community and checked by the Hackoustic team; links go to third-party sites we don't control.</p>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal" role="dialog" aria-modal="true">
+    <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
